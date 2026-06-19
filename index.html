@@ -50,33 +50,41 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .nav-icon-btn.active-btn{background:rgba(255,255,255,.14);color:#fff;border-color:var(--glass-border-strong)}
 @media(max-width:640px){.nav-links{display:none}.nav-logo{font-size:1.6rem}}
 
-/* ═══ SEARCH OVERLAY ═══ */
+/* ═══ SEARCH OVERLAY - MODERN 2026 STYLE ═══ */
 #search-overlay{
   position:fixed;inset:0;z-index:400;
-  background:rgba(8,8,13,.97);
+  background:rgba(8,8,13,.98);
   display:none;flex-direction:column;
   opacity:0;transition:opacity .25s;
 }
 #search-overlay.open{display:flex;opacity:1}
 .search-top{
-  padding:0 clamp(16px,4vw,44px);height:62px;display:flex;align-items:center;gap:14px;
-  border-bottom:1px solid var(--border2);
-  background:rgba(14,14,22,.7);
+  padding:clamp(16px,3vw,28px) clamp(16px,4vw,44px);height:auto;display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(14,14,22,.4);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
 }
-.search-input-wrap{flex:1;display:flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:0 14px;height:40px}
-.search-input-wrap svg{flex-shrink:0;color:var(--text-faint)}
-#search-input{background:none;border:none;outline:none;color:#fff;font-size:.92rem;font-family:'Inter',sans-serif;width:100%;font-weight:400}
-#search-input::placeholder{color:var(--text-faint)}
-.search-cancel{background:none;border:none;color:var(--text-dim);font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;padding:4px 0;transition:color .2s}
-.search-cancel:hover{color:#fff}
-.search-body{flex:1;overflow-y:auto;padding:clamp(20px,3vw,36px) clamp(16px,4vw,44px);scrollbar-width:thin;scrollbar-color:var(--surface3) transparent}
-.search-hint{color:var(--text-faint);font-size:.85rem;text-align:center;margin-top:60px}
-.search-hint svg{display:block;margin:0 auto 12px;opacity:.3}
-#search-results-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px}
-#search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.search-input-wrap{flex:1;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);border-radius:32px;padding:0 20px;height:48px;transition:all .3s}
+.search-input-wrap:focus-within{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);box-shadow:0 0 0 3px rgba(229,9,20,.1)}
+.search-input-wrap svg{flex-shrink:0;color:var(--text-faint);transition:color .2s}
+.search-input-wrap:focus-within svg{color:var(--text-dim)}
+#search-input{background:none;border:none;outline:none;color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;width:100%;font-weight:400}
+#search-input::placeholder{color:rgba(255,255,255,.35)}
+.search-cancel{background:none;border:none;color:var(--text-dim);font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;padding:8px 16px;transition:color .2s;border-radius:8px}
+.search-cancel:hover{color:#fff;background:rgba(255,255,255,.08)}
+.search-body{flex:1;overflow-y:auto;padding:clamp(24px,4vw,40px) clamp(16px,4vw,44px);scrollbar-width:thin;scrollbar-color:var(--surface3) transparent}
+.search-hint{color:var(--text-faint);font-size:.9rem;text-align:center;margin-top:60px}
+.search-hint svg{display:block;margin:0 auto 16px;opacity:.3}
+.recent-searches{margin-bottom:2rem}
+.recent-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;display:block}
+.recent-items{display:flex;flex-wrap:wrap;gap:8px}
+.recent-item{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--text-dim);font-size:.82rem;padding:8px 14px;border-radius:24px;cursor:pointer;transition:all .2s}
+.recent-item:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2);color:#fff}
+.recent-item svg{flex-shrink:0;width:14px;height:14px;opacity:.6}
+#search-results-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:16px}
+#search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
 .search-card{cursor:pointer;border-radius:var(--rl);overflow:hidden;position:relative;aspect-ratio:2/3;transition:transform .25s,box-shadow .25s}
-.search-card:hover{transform:scale(1.04) translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.55);z-index:2}
+.search-card:hover{transform:scale(1.06) translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.6);z-index:2}
 .search-card:hover .card-overlay{opacity:1}
 .search-card:hover .card-info{transform:translateY(0);opacity:1}
 .search-card-img{width:100%;height:100%;object-fit:cover;display:block}
@@ -89,9 +97,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 35%,rgba(229,9,20,.08) 0%,transparent 55%),linear-gradient(to right,rgba(8,8,13,.97) 25%,rgba(8,8,13,.55) 55%,rgba(8,8,13,.1) 100%),linear-gradient(to top,rgba(8,8,13,1) 0%,rgba(8,8,13,.4) 28%,rgba(8,8,13,0) 55%)}
 @media(max-width:640px){.hero-bg{opacity:.38}.hero-grad{background:linear-gradient(to top,rgba(8,8,13,1) 0%,rgba(8,8,13,.88) 50%,rgba(8,8,13,.45) 100%)}}
 .hero-content{position:relative;z-index:2;padding:0 clamp(18px,4vw,48px);max-width:580px;width:100%}
-.hero-live{display:inline-flex;align-items:center;gap:7px;background:var(--glass-bg);border:1px solid rgba(229,9,20,.4);color:#fff;font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:6px;margin-bottom:1rem;backdrop-filter:blur(8px)}
-.hero-live-dot{width:6px;height:6px;background:var(--red);border-radius:50%;flex-shrink:0;animation:pulsedot 1.8s ease-in-out infinite;box-shadow:0 0 6px var(--red)}
-@keyframes pulsedot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.55)}}
+.hero-live{display:none}
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.2rem,10.5vw,6.5rem);line-height:.9;letter-spacing:.02em;margin-bottom:1.1rem;color:#fff}
 .hero-title em{color:var(--red);font-style:normal;text-shadow:0 0 40px rgba(229,9,20,.35)}
 .hero-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap}
@@ -169,7 +175,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 /* remove btn */
 .wide-card-remove{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:10;backdrop-filter:blur(4px);transition:all .2s}
 .wide-card:hover .wide-card-remove{display:flex}
-.wide-card-remove:hover{background:rgba(229,9,20,.8);color:#fff;border-color:transparent}
+.wide-card-remove:hover{background:rgba(229,9,20,.85);border-color:var(--red);color:#fff}
 
 /* ═══ TOP 10 ═══ */
 .top10-card{flex-shrink:0;scroll-snap-align:start;width:clamp(115px,16vw,155px);cursor:pointer;position:relative;transition:transform .28s,box-shadow .28s}
@@ -294,10 +300,10 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
 <nav id="navbar">
   <a class="nav-logo" onclick="showHome()">NEXFLEX</a>
   <ul class="nav-links">
-    <li><a class="active" onclick="showHome()">Home</a></li>
+    <li><a class="active" onclick="showHome();setNavActive(0)">Home</a></li>
+    <li><a onclick="filterByType('tv');setNavActive(1)">Series</a></li>
+    <li><a onclick="filterByType('movie');setNavActive(1)">Films</a></li>
     <li><a onclick="showPage('mylist-screen');setNavActive(2)">My List</a></li>
-    <li><a>Series</a></li>
-    <li><a>Films</a></li>
     <li><a>New &amp; Hot</a></li>
   </ul>
   <div class="nav-right">
@@ -318,6 +324,10 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
   </div>
   <div class="search-body">
     <div id="search-hint-wrap" class="search-hint">
+      <div class="recent-searches">
+        <label class="recent-label">Recent Searches</label>
+        <div class="recent-items" id="recent-items"></div>
+      </div>
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       Search for any movie or show
     </div>
@@ -335,7 +345,6 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=85')"></div>
     <div class="hero-grad"></div>
     <div class="hero-content">
-      <div class="hero-live"><div class="hero-live-dot"></div>Now Streaming</div>
       <h1 class="hero-title">Dark <em>Horizon</em></h1>
       <div class="hero-meta">
         <span class="hero-rating">★ 8.7</span><span class="dot"></span>
@@ -393,6 +402,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <h2 class="section-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Top 10 This Week
       </h2>
+      <button class="see-all" onclick="loadMoreResults('top10-row', 'popular', 'movie')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="top10-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
@@ -405,7 +415,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <h2 class="section-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--red)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Trending Now
       </h2>
-      <button class="see-all">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <button class="see-all" onclick="loadMoreResults('trending-row', 'trending', 'movie')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="trending-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
@@ -418,6 +428,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <h2 class="section-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#a78bfa"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>Now in Cinemas
       </h2>
+      <button class="see-all" onclick="loadMoreResults('nowplaying-row', 'now_playing', 'movie')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="nowplaying-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
@@ -428,7 +439,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
   <section class="content-section">
     <div class="section-header">
       <h2 class="section-title"><span class="n-orig">N</span> Highly Rated</h2>
-      <button class="see-all">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <button class="see-all" onclick="loadMoreResults('toprated-row', 'top_rated', 'movie')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="toprated-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
@@ -441,18 +452,59 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <h2 class="section-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#f97316"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action &amp; Adventure
       </h2>
+      <button class="see-all" onclick="loadMoreResults('action-row', 'action', 'genre')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="action-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
     </div>
   </section>
 
-  <!-- SCI-FI -->
+  <!-- COMEDY -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#ec4899"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy
+      </h2>
+      <button class="see-all" onclick="loadMoreResults('comedy-row', 'comedy', 'genre')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="scroll-wrap">
+      <div class="row-scroll" id="comedy-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
+    </div>
+  </section>
+
+  <!-- DRAMA -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#8b5cf6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama
+      </h2>
+      <button class="see-all" onclick="loadMoreResults('drama-row', 'drama', 'genre')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="scroll-wrap">
+      <div class="row-scroll" id="drama-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
+    </div>
+  </section>
+
+  <!-- ROMANCE -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#f43f5e"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Romance
+      </h2>
+      <button class="see-all" onclick="loadMoreResults('romance-row', 'romance', 'genre')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="scroll-wrap">
+      <div class="row-scroll" id="romance-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
+    </div>
+  </section>
+
+  <!-- SCIENCE FICTION -->
   <section class="content-section">
     <div class="section-header">
       <h2 class="section-title">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#38bdf8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Science Fiction
       </h2>
+      <button class="see-all" onclick="loadMoreResults('scifi-row', 'scifi', 'genre')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap">
       <div class="row-scroll" id="scifi-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
@@ -481,14 +533,14 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     <div class="section-header"><h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Browse Categories</h2></div>
     <div class="scroll-wrap">
       <div class="row-scroll">
-        <div class="cat-card g3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action</div>
-        <div class="cat-card g4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Horror</div>
-        <div class="cat-card g2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy</div>
-        <div class="cat-card g5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sci-Fi</div>
-        <div class="cat-card g1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Thriller</div>
-        <div class="cat-card g6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Romance</div>
-        <div class="cat-card g7"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Documentary</div>
-        <div class="cat-card g8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama</div>
+        <div class="cat-card g3" onclick="filterByGenre(28)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action</div>
+        <div class="cat-card g4" onclick="filterByGenre(27)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Horror</div>
+        <div class="cat-card g2" onclick="filterByGenre(35)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy</div>
+        <div class="cat-card g5" onclick="filterByGenre(878)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sci-Fi</div>
+        <div class="cat-card g1" onclick="filterByGenre(53)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Thriller</div>
+        <div class="cat-card g6" onclick="filterByGenre(10749)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Romance</div>
+        <div class="cat-card g7" onclick="filterByGenre(99)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Documentary</div>
+        <div class="cat-card g8" onclick="filterByGenre(18)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama</div>
       </div>
     </div>
   </section>
@@ -547,9 +599,6 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
         </button>
         <button class="btn-circle" id="watch-list-btn" onclick="toggleWatchList()" aria-label="My List">
           <svg id="watch-list-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <button class="btn-circle" onclick="showToast('Link copied!')" aria-label="Share">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
       </div>
     </div>
@@ -629,6 +678,12 @@ const IMG_BASE = 'https://image.tmdb.org/t/p/';
 const TMDB_KEY = '8265bd1679663a7ea12ac168da84d2e8'; // free public demo key used in docs
 const TMDB = (path, params='') => `https://api.themoviedb.org/3${path}?api_key=${TMDB_KEY}&${params}`;
 
+// Genre IDs for TMDB
+const GENRE_IDS = {
+  28: 'action', 27: 'horror', 35: 'comedy', 878: 'scifi', 53: 'thriller',
+  10749: 'romance', 99: 'documentary', 18: 'drama'
+};
+
 // ══════════════════════════════════════════
 // LOCAL STORAGE — My List + Continue Watching
 // ══════════════════════════════════════════
@@ -654,6 +709,27 @@ function updateCWProgress(id, pct) {
   const cw = getCW();
   const idx = cw.findIndex(x => x.id == id);
   if (idx >= 0) { cw[idx].progress = Math.round(pct); saveCW(cw); }
+}
+
+// Recent searches
+function getRecentSearches() { try { return JSON.parse(localStorage.getItem('nf_recent') || '[]'); } catch(e) { return []; } }
+function saveRecentSearch(q) {
+  let recent = getRecentSearches().filter(x => x !== q);
+  recent.unshift(q);
+  localStorage.setItem('nf_recent', JSON.stringify(recent.slice(0, 5)));
+  renderRecentSearches();
+}
+function renderRecentSearches() {
+  const recent = getRecentSearches();
+  const container = document.getElementById('recent-items');
+  if (recent.length) {
+    container.innerHTML = recent.map(q => `
+      <div class="recent-item" onclick="document.getElementById('search-input').value='${q}';runSearch('${q}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        ${q}
+      </div>
+    `).join('');
+  }
 }
 
 // ══════════════════════════════════════════
@@ -694,8 +770,20 @@ function showHome() {
 
 function goBack() {
   showPage(prevPage === 'watch-screen' ? 'home-screen' : (prevPage || 'home-screen'));
-  if (prevPage === 'mylist-screen') { setNavActive(2); setMobNavActive(2); }
+  if (prevPage === 'mylist-screen') { setNavActive(3); setMobNavActive(2); }
   else { setNavActive(0); setMobNavActive(0); }
+}
+
+function filterByType(type) {
+  setNavActive(1);
+  showPage('home-screen');
+  showToast(`Filtering by ${type === 'tv' ? 'Series' : 'Films'}...`);
+}
+
+function filterByGenre(genreId) {
+  const genreName = Object.values(GENRE_IDS).find((v, k) => Object.keys(GENRE_IDS)[k] == genreId) || 'Genre';
+  showToast(`Browsing ${genreName}...`);
+  showPage('home-screen');
 }
 
 // ══════════════════════════════════════════
@@ -709,6 +797,7 @@ function openSearch() {
   document.getElementById('search-input').focus();
   document.body.style.overflow = 'hidden';
   document.getElementById('search-btn').classList.add('active-btn');
+  renderRecentSearches();
 }
 function closeSearch() {
   const overlay = document.getElementById('search-overlay');
@@ -734,6 +823,7 @@ document.getElementById('search-input').addEventListener('keydown', e => {
   if (e.key === 'Escape') closeSearch();
 });
 async function runSearch(q) {
+  saveRecentSearch(q);
   document.getElementById('search-hint-wrap').style.display = 'none';
   document.getElementById('search-results-wrap').style.display = 'block';
   document.getElementById('search-results-label').textContent = '';
@@ -775,23 +865,23 @@ async function runSearch(q) {
 function buildMovieCard(m, badge, showListBadge) {
   const title = m.title || m.name || 'Unknown';
   const poster = m.poster_path ? IMG_BASE + 'w342' + m.poster_path : null;
-  const year = (m.release_date || m.first_air_date || '').slice(0,4);
-  const rating = m.vote_average ? `★ ${m.vote_average.toFixed(1)}` : '';
   const type = m.media_type || (m.title ? 'movie' : 'tv');
   const grad = ['g1','g2','g3','g4','g5','g6','g7','g8'][m.id % 8];
+  const year = (m.release_date || m.first_air_date || '').slice(0,4);
+  const rating = m.vote_average ? `★ ${m.vote_average.toFixed(1)}` : '';
   const inList = isInList(m.id);
   return `<div class="movie-card" onclick="showWatchTMDB(${m.id},'${type}')">
     <div class="card-img-wrap portrait ${!poster ? grad : ''}">
       ${poster ? '<div class="skeleton"></div>' : `<div class="card-fb">${title.charAt(0)}</div>`}
       ${poster ? `<img alt="${title}" src="${poster}" loading="lazy" onload="this.classList.add('loaded')">` : ''}
     </div>
-    ${badge ? `<span class="card-badge ${badge.cls}">${badge.text}</span>` : ''}
-    ${showListBadge && inList ? `<span class="card-list-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>` : ''}
+    ${badge ? `<div class="card-badge badge-${badge.cls}">${badge.text}</div>` : ''}
+    ${inList && showListBadge ? `<div class="card-list-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/></svg></div>` : ''}
     <div class="card-overlay">
       <div class="card-info">
         <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
         <div class="card-title-sm">${title}</div>
-        <div class="card-meta-sm"><span class="card-star">${rating}</span>${year ? `<span>${year}</span>` : ''}</div>
+        <div class="card-meta-sm"><span class="card-star">${rating}</span>${year?`<span>${year}</span>`:''}</div>
       </div>
     </div>
   </div>`;
@@ -831,8 +921,6 @@ async function loadRow(rowId, url, builder) {
 
 async function initRows() {
   // Top 10 (popular)
-  loadRow('top10-row', TMDB('/movie/popular', 'language=en-US&page=1'), (m, i) => buildTop10Card(m, i+1));
-  // Re-fetch to get numbered order right
   (async () => {
     const row = document.getElementById('top10-row');
     try {
@@ -844,15 +932,26 @@ async function initRows() {
   })();
 
   // Trending
-  loadRow('trending-row', TMDB('/trending/movie/week', ''), m => buildMovieCard(m, {cls:'badge-trend',text:'Trending'}));
+  loadRow('trending-row', TMDB('/trending/movie/week', ''), m => buildMovieCard(m, {cls:'trend',text:'Trending'}));
   // Now playing
-  loadRow('nowplaying-row', TMDB('/movie/now_playing', 'language=en-US&page=1'), m => buildMovieCard(m, {cls:'badge-new',text:'Cinema'}));
+  loadRow('nowplaying-row', TMDB('/movie/now_playing', 'language=en-US&page=1'), m => buildMovieCard(m, {cls:'new',text:'Cinema'}));
   // Top rated
-  loadRow('toprated-row', TMDB('/movie/top_rated', 'language=en-US&page=1'), m => buildMovieCard(m, {cls:'badge-top',text:'Top Rated'}));
+  loadRow('toprated-row', TMDB('/movie/top_rated', 'language=en-US&page=1'), m => buildMovieCard(m, {cls:'top',text:'Top Rated'}));
   // Action (genre 28)
   loadRow('action-row', TMDB('/discover/movie', 'with_genres=28&sort_by=popularity.desc&language=en-US&page=1'), m => buildMovieCard(m));
-  // Sci-fi (genre 878)
+  // Comedy (genre 35)
+  loadRow('comedy-row', TMDB('/discover/movie', 'with_genres=35&sort_by=popularity.desc&language=en-US&page=1'), m => buildMovieCard(m));
+  // Drama (genre 18)
+  loadRow('drama-row', TMDB('/discover/movie', 'with_genres=18&sort_by=popularity.desc&language=en-US&page=1'), m => buildMovieCard(m));
+  // Romance (genre 10749)
+  loadRow('romance-row', TMDB('/discover/movie', 'with_genres=10749&sort_by=popularity.desc&language=en-US&page=1'), m => buildMovieCard(m));
+  // Sci-Fi (genre 878)
   loadRow('scifi-row', TMDB('/discover/movie', 'with_genres=878&sort_by=popularity.desc&language=en-US&page=1'), m => buildMovieCard(m));
+}
+
+async function loadMoreResults(rowId, type, category) {
+  showToast('Loading more...');
+  // This can be expanded to show a modal or navigate to a full results page
 }
 
 // ══════════════════════════════════════════
@@ -901,7 +1000,7 @@ function refreshHomeMyList() {
   const row = document.getElementById('home-mylist-row');
   if (!list.length) { section.style.display = 'none'; return; }
   section.style.display = 'block';
-  row.innerHTML = list.slice(0,12).map(m => buildMovieCard(m)).join('');
+  row.innerHTML = list.slice(0,12).map(m => buildMovieCard(m, null, true)).join('');
 }
 function renderMyListScreen() {
   const list = getMyList();
@@ -951,53 +1050,34 @@ function removeAndRefresh(id) {
 // ══════════════════════════════════════════
 // WATCH SCREEN
 // ══════════════════════════════════════════
-let watchPlaying = false, watchPos = 0, watchInterval = null;
 let currentWatchItem = null;
+let watchPlaying = false;
+let watchInterval = null;
+let watchPos = 0;
 
 async function showWatchTMDB(id, type) {
-  prevPage = document.querySelector('.page.active')?.id || 'home-screen';
-  // Show screen immediately with loading state
-  document.getElementById('watch-hero-title').textContent = '…';
-  document.getElementById('watch-hero-sub').textContent = '';
-  document.getElementById('watch-star').textContent = '';
-  document.getElementById('watch-year').textContent = '';
-  document.getElementById('watch-dur').textContent = '';
-  document.getElementById('watch-age').textContent = '';
-  document.getElementById('watch-genres').innerHTML = '';
-  document.getElementById('watch-desc').textContent = 'Loading…';
-  document.getElementById('watch-cast').innerHTML = '';
-  document.getElementById('watch-more-grid').innerHTML = '<div class="row-loading"><div class="spinner"></div>Loading…</div>';
-  document.getElementById('watch-hero-img').src = '';
-  document.getElementById('watch-breadcrumb').textContent = '…';
-  document.getElementById('watch-director').textContent = '—';
-  document.getElementById('watch-studio').textContent = '—';
-  document.getElementById('watch-released').textContent = '—';
-  document.getElementById('watch-lang').textContent = '—';
-  document.getElementById('watch-votes').textContent = '—';
-  document.getElementById('watch-pop').textContent = '—';
-
-  watchPlaying = false; watchPos = 0;
-  updateWatchProgress(); updateWatchPlayIcons();
-  stopWatchProgress();
-
   showPage('watch-screen');
+  watchPos = 0;
+  watchPlaying = false;
+  updateWatchPlayIcons();
 
+  const endpoint = type === 'tv' ? `/tv/${id}` : `/movie/${id}`;
   try {
-    const endpoint = type === 'tv' ? `/tv/${id}` : `/movie/${id}`;
     const [detail, credits, similar] = await Promise.all([
-      fetch(TMDB(endpoint, 'language=en-US&append_to_response=release_dates')).then(r=>r.json()),
-      fetch(TMDB(`${endpoint}/credits`, 'language=en-US')).then(r=>r.json()),
-      fetch(TMDB(`${endpoint}/similar`, 'language=en-US&page=1')).then(r=>r.json())
+      fetch(TMDB(endpoint, 'append_to_response=release_dates')).then(r => r.json()),
+      fetch(TMDB(`${endpoint}/credits`)).then(r => r.json()),
+      fetch(TMDB(`${endpoint}/similar`)).then(r => r.json())
     ]);
 
-    currentWatchItem = { ...detail, media_type: type };
+    currentWatchItem = { ...detail, media_type: type, id };
 
     const title = detail.title || detail.name || 'Unknown';
-    const year = (detail.release_date || detail.first_air_date || '').slice(0,4);
-    const rating = detail.vote_average ? detail.vote_average.toFixed(1) : '—';
-    const runtime = detail.runtime ? `${Math.floor(detail.runtime/60)}h ${detail.runtime%60}m` : (detail.episode_run_time?.[0] ? `${detail.episode_run_time[0]}m/ep` : '—');
-    const genres = (detail.genres || []).map(g=>g.name);
     const overview = detail.overview || 'No description available.';
+    const rating = detail.vote_average ? detail.vote_average.toFixed(1) : 'N/A';
+    const year = (detail.release_date || detail.first_air_date || '').slice(0,4);
+    const runtime = detail.runtime ? `${detail.runtime}m` : (detail.episode_run_time ? `${detail.episode_run_time[0]}m` : '—');
+    const genres = (detail.genres || []).map(g => g.name).slice(0,3);
+
     const backdropUrl = detail.backdrop_path ? IMG_BASE + 'w1280' + detail.backdrop_path : 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=85';
     const lang = detail.original_language ? detail.original_language.toUpperCase() : '—';
     const votes = detail.vote_count ? detail.vote_count.toLocaleString() : '—';
@@ -1188,6 +1268,7 @@ function showToast(msg) {
 initRows();
 refreshCWSection();
 refreshHomeMyList();
+renderRecentSearches();
 </script>
 </body>
 </html>
