@@ -363,7 +363,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <div class="hero-tags"><span class="htag">Sci-Fi</span><span class="htag">Thriller</span><span class="htag">Drama</span></div>
       <p class="hero-desc">A lone astronaut discovers a signal from the edge of the solar system — one that rewrites everything humanity thought it knew about the universe.</p>
       <div class="hero-actions">
-        <button class="btn-play" onclick="openPlayer('tt1345836', 'movie')">
+        <button class="btn-play" onclick="showWatchTMDB(238, 'movie')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>Watch Now
         </button>
         <button class="btn-info" onclick="showWatch('dark-horizon')">
@@ -591,9 +591,9 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
       <div class="watch-progress-fill" id="watch-progress-fill"></div>
     </div>
     <div class="watch-play-overlay">
-      <div class="watch-play-btn" onclick="toggleWatchPlay()">
-        <svg id="watch-play-icon" width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M5 3l14 9-14 9V3z"/></svg>
-      </div>
+    <div class="watch-play-btn" onclick="if(currentWatchItem?.imdb_id) openPlayer(currentWatchItem.imdb_id, currentWatchItem.media_type); else showToast('Stream not available for this title')">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+    </div>
     </div>
     <div class="watch-hero-info">
       <div>
@@ -620,7 +620,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     </div>
     <div class="genre-row" id="watch-genres"></div>
     <div class="watch-actions-row">
-      <button class="wbtn wbtn-primary" onclick="if(currentWatchItem) openPlayer(currentWatchItem.id, currentWatchItem.media_type)">
+      <button class="wbtn wbtn-primary" onclick="if(currentWatchItem?.imdb_id) openPlayer(currentWatchItem.imdb_id, currentWatchItem.media_type); else showToast('Stream not available for this title')">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>Play Now
       </button>
       <button class="wbtn" id="watch-list-btn2" onclick="toggleWatchList()">
@@ -1093,13 +1093,14 @@ async function showWatchTMDB(id, type) {
 
   const endpoint = type === 'tv' ? `/tv/${id}` : `/movie/${id}`;
   try {
-    const [detail, credits, similar] = await Promise.all([
+    const [detail, credits, similar, externalIds] = await Promise.all([
       fetch(TMDB(endpoint, 'append_to_response=release_dates')).then(r => r.json()),
       fetch(TMDB(`${endpoint}/credits`)).then(r => r.json()),
-      fetch(TMDB(`${endpoint}/similar`)).then(r => r.json())
+      fetch(TMDB(`${endpoint}/similar`)).then(r => r.json()),
+      fetch(TMDB(`${endpoint}/external_ids`)).then(r => r.json())
     ]);
 
-    currentWatchItem = { ...detail, media_type: type, id };
+    currentWatchItem = { ...detail, media_type: type, id, imdb_id: externalIds.imdb_id };
 
     const title = detail.title || detail.name || 'Unknown';
     const overview = detail.overview || 'No description available.';
