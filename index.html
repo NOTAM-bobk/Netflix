@@ -21,64 +21,38 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.5}
 .page{display:none;min-height:100vh}.page.active{display:block}
 
-/* ═══ NAV ═══ */
-#navbar{
-  position:fixed;top:0;left:0;right:0;z-index:300;height:62px;
-  padding:0 clamp(16px,4vw,44px);
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(8,8,13,.01);border-bottom:1px solid transparent;
-  transition:background .4s,border-color .4s,backdrop-filter .4s;
-}
-#navbar.glass{
-  background:rgba(14,14,22,.6);border-bottom-color:rgba(255,255,255,.08);
-  backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(0,0,0,.2),0 8px 32px rgba(0,0,0,.4);
-}
-#navbar.glass::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25) 30%,rgba(255,255,255,.35) 50%,rgba(255,255,255,.25) 70%,transparent);
-  pointer-events:none;
-}
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;padding:0 clamp(16px,4vw,44px);display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,13,.01);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+#navbar.glass{background:rgba(14,14,22,.6);border-bottom-color:rgba(255,255,255,.08);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 8px 32px rgba(0,0,0,.4)}
+#navbar.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35) 50%,transparent);pointer-events:none}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--red);text-decoration:none;flex-shrink:0;line-height:1;text-shadow:0 0 24px rgba(229,9,20,.45);cursor:pointer}
 .nav-links{display:flex;gap:1.8rem;list-style:none}
 .nav-links a{color:var(--text-dim);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.04em;transition:color .2s;position:relative;cursor:pointer}
 .nav-links a:hover,.nav-links a.active{color:#fff}
 .nav-links a.active::after{content:'';position:absolute;bottom:-5px;left:0;right:0;height:2px;background:var(--red);border-radius:1px}
 .nav-right{display:flex;align-items:center;gap:.65rem}
-.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
-.nav-icon-btn:hover{background:var(--glass-bg-hover);color:#fff;border-color:var(--glass-border-strong)}
-.nav-icon-btn.active-btn{background:rgba(255,255,255,.14);color:#fff;border-color:var(--glass-border-strong)}
+.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text-dim);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.nav-icon-btn:hover{background:var(--glass-bg-hover);color:#fff}
 .wl-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;border-radius:50%;background:var(--red);color:#fff;font-size:.55rem;font-weight:800;display:none;align-items:center;justify-content:center;border:2px solid var(--bg)}
 .wl-badge.visible{display:flex}
 @media(max-width:640px){.nav-links{display:none}.nav-logo{font-size:1.6rem}}
 
-/* ═══ SEARCH OVERLAY ═══ */
-#search-overlay{
-  position:fixed;inset:0;z-index:400;
-  background:rgba(8,8,13,.98);
-  display:none;flex-direction:column;
-  opacity:0;transition:opacity .25s;
-}
+/* SEARCH */
+#search-overlay{position:fixed;inset:0;z-index:400;background:rgba(8,8,13,.98);display:none;flex-direction:column;opacity:0;transition:opacity .25s}
 #search-overlay.open{display:flex;opacity:1}
-.search-top{
-  padding:clamp(16px,3vw,28px) clamp(16px,4vw,44px);display:flex;align-items:center;gap:14px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(14,14,22,.4);backdrop-filter:blur(20px);
-}
+.search-top{padding:clamp(16px,3vw,28px) clamp(16px,4vw,44px);display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(14,14,22,.4);backdrop-filter:blur(20px)}
 .search-input-wrap{flex:1;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);border-radius:32px;padding:0 20px;height:48px;transition:all .3s}
 .search-input-wrap:focus-within{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);box-shadow:0 0 0 3px rgba(229,9,20,.1)}
-.search-input-wrap svg{flex-shrink:0;color:var(--text-faint);transition:color .2s}
-.search-input-wrap:focus-within svg{color:var(--text-dim)}
-#search-input{background:none;border:none;outline:none;color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;width:100%;font-weight:400}
+.search-input-wrap svg{flex-shrink:0;color:var(--text-faint)}
+#search-input{background:none;border:none;outline:none;color:#fff;font-size:.95rem;font-family:'Inter',sans-serif;width:100%}
 #search-input::placeholder{color:rgba(255,255,255,.35)}
 .search-cancel{background:none;border:none;color:var(--text-dim);font-size:.84rem;font-weight:600;cursor:pointer;white-space:nowrap;padding:8px 16px;transition:color .2s;border-radius:8px}
 .search-cancel:hover{color:#fff;background:rgba(255,255,255,.08)}
-.search-body{flex:1;overflow-y:auto;padding:clamp(24px,4vw,40px) clamp(16px,4vw,44px);scrollbar-width:thin;scrollbar-color:var(--surface3) transparent}
-.recent-searches{margin-bottom:2rem}
+.search-body{flex:1;overflow-y:auto;padding:clamp(24px,4vw,40px) clamp(16px,4vw,44px);scrollbar-width:thin}
 .recent-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px;display:block}
-.recent-items{display:flex;flex-wrap:wrap;gap:8px}
+.recent-items{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
 .recent-item{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--text-dim);font-size:.82rem;padding:8px 14px;border-radius:24px;cursor:pointer;transition:all .2s}
-.recent-item:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2);color:#fff}
+.recent-item:hover{background:rgba(255,255,255,.14);color:#fff}
 #search-results-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:16px}
 #search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
 .search-card{cursor:pointer;border-radius:var(--rl);overflow:hidden;position:relative;aspect-ratio:2/3;transition:transform .25s,box-shadow .25s}
@@ -88,7 +62,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .search-card-img{width:100%;height:100%;object-fit:cover;display:block}
 .search-card-fb{width:100%;height:100%;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:700;color:rgba(255,255,255,.15)}
 
-/* ═══ HERO ═══ */
+/* HERO */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-bottom:clamp(48px,9vh,110px);overflow:hidden}
 .hero-bg{position:absolute;inset:0;background:center/cover no-repeat;filter:saturate(.6) brightness(.7);transform:scale(1.02)}
 .hero-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 35%,rgba(229,9,20,.08) 0%,transparent 55%),linear-gradient(to right,rgba(8,8,13,.97) 25%,rgba(8,8,13,.55) 55%,rgba(8,8,13,.1) 100%),linear-gradient(to top,rgba(8,8,13,1) 0%,rgba(8,8,13,.4) 28%,rgba(8,8,13,0) 55%)}
@@ -113,14 +87,14 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .btn-circle:hover{background:rgba(255,255,255,.18)}
 .btn-circle.in-list{background:rgba(229,9,20,.2);border-color:rgba(229,9,20,.5);color:var(--red)}
 
-/* ═══ FILTER PILLS ═══ */
+/* PILLS */
 .filter-pills{display:flex;gap:7px;padding:0 clamp(18px,4vw,48px);margin-bottom:2rem;overflow-x:auto;scrollbar-width:none}
 .filter-pills::-webkit-scrollbar{display:none}
-.pill{flex-shrink:0;font-size:.73rem;font-weight:600;letter-spacing:.04em;padding:7px 16px;border-radius:22px;cursor:pointer;border:1px solid var(--border2);background:var(--glass-bg);color:var(--text-dim);transition:all .2s;white-space:nowrap;backdrop-filter:blur(4px)}
+.pill{flex-shrink:0;font-size:.73rem;font-weight:600;letter-spacing:.04em;padding:7px 16px;border-radius:22px;cursor:pointer;border:1px solid var(--border2);background:var(--glass-bg);color:var(--text-dim);transition:all .2s;white-space:nowrap}
 .pill:hover{background:var(--surface2);color:#fff}
 .pill.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 4px 12px rgba(229,9,20,.3)}
 
-/* ═══ SECTIONS ═══ */
+/* SECTIONS */
 .content-section{margin-bottom:2.8rem}
 .section-header{display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,48px);margin-bottom:1.1rem}
 .section-title{font-size:1rem;font-weight:700;color:#fff;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
@@ -132,7 +106,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .row-scroll{display:flex;gap:12px;padding:4px clamp(18px,4vw,48px) 10px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .row-scroll::-webkit-scrollbar{display:none}
 
-/* ═══ MOVIE CARD ═══ */
+/* MOVIE CARD */
 .movie-card{flex-shrink:0;scroll-snap-align:start;width:clamp(130px,18vw,172px);cursor:pointer;position:relative;border-radius:var(--rl);overflow:hidden;transition:transform .28s cubic-bezier(.25,.46,.45,.94),box-shadow .28s}
 .movie-card:hover{transform:scale(1.07) translateY(-5px);z-index:2;box-shadow:0 20px 48px rgba(0,0,0,.55)}
 .movie-card:hover .card-overlay{opacity:1}
@@ -150,11 +124,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .card-meta-sm{display:flex;align-items:center;gap:5px;font-size:.63rem;color:var(--text-dim)}
 .card-star{color:#f5c518;font-weight:700}
 .card-badge{position:absolute;top:9px;left:9px;font-size:.57rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;color:#fff;backdrop-filter:blur(4px)}
-.badge-new{background:rgba(16,185,129,.85)}.badge-top{background:rgba(245,158,11,.9);color:#000}.badge-orig{background:rgba(229,9,20,.85)}.badge-trend{background:rgba(239,68,68,.85)}
-.card-list-badge{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:rgba(229,9,20,.85);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.badge-new{background:rgba(16,185,129,.85)}.badge-top{background:rgba(245,158,11,.9);color:#000}.badge-trend{background:rgba(239,68,68,.85)}
+.card-list-badge{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:rgba(229,9,20,.85);display:flex;align-items:center;justify-content:center}
 
-/* ═══ WIDE CARD ═══ */
-.wide-card{flex-shrink:0;scroll-snap-align:start;width:clamp(230px,36vw,300px);cursor:pointer;border-radius:var(--rl);overflow:hidden;position:relative;transition:transform .28s cubic-bezier(.25,.46,.45,.94),box-shadow .28s}
+/* WIDE CARD */
+.wide-card{flex-shrink:0;scroll-snap-align:start;width:clamp(230px,36vw,300px);cursor:pointer;border-radius:var(--rl);overflow:hidden;position:relative;transition:transform .28s,box-shadow .28s}
 .wide-card:hover{transform:scale(1.04) translateY(-3px);z-index:2;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .wide-card .card-img-wrap{aspect-ratio:16/9}
 .wide-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,13,.92) 0%,rgba(8,8,13,.1) 65%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:13px}
@@ -162,22 +136,22 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .wide-card-sub{font-size:.68rem;color:var(--text-dim);display:flex;gap:7px;align-items:center}
 .progress-mini{height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:8px}
 .progress-mini-fill{height:100%;background:var(--red);border-radius:2px}
-.wide-card-remove{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:10;backdrop-filter:blur(4px);transition:all .2s}
+.wide-card-remove{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:all .2s}
 .wide-card:hover .wide-card-remove{display:flex}
-.wide-card-remove:hover{background:rgba(229,9,20,.85);border-color:var(--red);color:#fff}
+.wide-card-remove:hover{background:rgba(229,9,20,.85);color:#fff}
 
-/* ═══ TOP 10 ═══ */
+/* TOP 10 */
 .top10-card{flex-shrink:0;scroll-snap-align:start;width:clamp(115px,16vw,155px);cursor:pointer;position:relative;transition:transform .28s,box-shadow .28s}
 .top10-card:hover{transform:scale(1.05) translateY(-4px);z-index:2;box-shadow:0 16px 32px rgba(0,0,0,.5)}
 .top10-card:hover .top10-ring{opacity:1}
 .top10-num{position:absolute;bottom:-10px;left:-7px;font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,8vw,5.5rem);line-height:1;color:var(--bg);-webkit-text-stroke:2px rgba(255,255,255,.2);z-index:3;user-select:none;letter-spacing:-.02em}
 .top10-ring{position:absolute;inset:0;border-radius:var(--rl);border:2px solid var(--red);opacity:0;transition:opacity .3s}
 
-/* ═══ CATEGORY CARDS ═══ */
-.cat-card{flex-shrink:0;scroll-snap-align:start;width:clamp(148px,23vw,190px);height:86px;border-radius:var(--rl);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:.82rem;font-weight:700;letter-spacing:.03em;border:1px solid var(--border2);transition:all .22s;text-decoration:none;color:#fff}
+/* CAT CARDS */
+.cat-card{flex-shrink:0;scroll-snap-align:start;width:clamp(148px,23vw,190px);height:86px;border-radius:var(--rl);display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;font-size:.82rem;font-weight:700;letter-spacing:.03em;border:1px solid var(--border2);transition:all .22s;color:#fff}
 .cat-card:hover{transform:scale(1.05);border-color:rgba(255,255,255,.25);box-shadow:0 8px 24px rgba(0,0,0,.35)}
 
-/* ═══ MY LIST SCREEN ═══ */
+/* MY LIST SCREEN */
 #mylist-screen{padding-top:62px}
 .mylist-header{padding:clamp(28px,5vw,56px) clamp(18px,4vw,48px) 1rem}
 .mylist-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:.04em;margin-bottom:.4rem}
@@ -188,13 +162,13 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .mylist-empty p{font-size:.85rem;color:var(--text-faint);max-width:280px;line-height:1.6}
 .mylist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(130px,20vw,165px),1fr));gap:14px;padding:0 clamp(18px,4vw,48px) clamp(32px,5vw,56px)}
 
-/* ═══ WATCH SCREEN ═══ */
+/* WATCH SCREEN */
 #watch-screen{background:var(--bg);min-height:100vh}
 .back-bar{position:sticky;top:62px;z-index:100;padding:12px clamp(18px,4vw,48px);background:rgba(8,8,13,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:10px}
-.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--glass-bg);border:1px solid var(--glass-border);color:#fff;font-size:.86rem;font-weight:600;cursor:pointer;padding:9px 18px 9px 14px;border-radius:24px;transition:all .2s;backdrop-filter:blur(10px)}
-.back-btn:hover{background:var(--glass-bg-hover);border-color:var(--glass-border-strong);transform:translateX(-2px)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--glass-bg);border:1px solid var(--glass-border);color:#fff;font-size:.86rem;font-weight:600;cursor:pointer;padding:9px 18px 9px 14px;border-radius:24px;transition:all .2s}
+.back-btn:hover{background:var(--glass-bg-hover);transform:translateX(-2px)}
 .watch-hero{position:relative;width:100%;background:#000;overflow:hidden}
-.watch-hero-img{width:100%;aspect-ratio:2.35/1;object-fit:cover;display:block;filter:brightness(.72) saturate(.75)}
+.watch-hero-img{width:100%;aspect-ratio:2.35/1;object-fit:cover;object-position:center top;display:block;filter:brightness(.72) saturate(.75)}
 .watch-hero-grad{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,13,.7) 0%,transparent 50%),linear-gradient(to top,rgba(8,8,13,1) 0%,rgba(8,8,13,.3) 30%,transparent 60%),linear-gradient(to bottom,rgba(8,8,13,.5) 0%,transparent 25%)}
 .watch-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s}
 .watch-hero:hover .watch-play-overlay{opacity:1}
@@ -202,18 +176,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .watch-play-btn:hover{background:rgba(255,255,255,.28);transform:scale(1.06)}
 .watch-hero-info{position:absolute;bottom:0;left:0;right:0;padding:clamp(16px,3vw,28px) clamp(18px,4vw,48px);display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .watch-hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3.5rem);letter-spacing:.03em;line-height:.95;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.6)}
-.watch-hero-sub{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.4rem;font-weight:500;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.watch-hero-sub{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.4rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
 .watch-hero-actions{display:flex;gap:9px;flex-shrink:0;align-items:center}
 .watch-content{padding:clamp(24px,4vw,48px) clamp(18px,4vw,48px) 0;max-width:1100px}
 .watch-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1.2rem}
 .wmeta-star{font-size:.78rem;font-weight:700;color:#f5c518;background:rgba(245,197,24,.1);padding:3px 9px;border-radius:5px;border:1px solid rgba(245,197,24,.22)}
 .wmeta-chip{font-size:.78rem;color:var(--text-dim);font-weight:500}
-.wmeta-age{font-size:.72rem;color:var(--text-dim);border:1px solid var(--border2);padding:2px 7px;border-radius:4px;font-weight:600}
 .genre-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.3rem}
 .gpill{font-size:.65rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border2);padding:3px 10px;border-radius:22px;background:rgba(255,255,255,.04)}
 .watch-actions-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:1.6rem}
-.wbtn{display:inline-flex;align-items:center;gap:7px;background:var(--glass-bg);color:#fff;font-size:.78rem;font-weight:600;padding:9px 16px;border-radius:var(--r);cursor:pointer;border:1px solid var(--glass-border);transition:all .2s;backdrop-filter:blur(6px);white-space:nowrap}
-.wbtn:hover{background:rgba(255,255,255,.13);border-color:var(--glass-border-strong)}
+.wbtn{display:inline-flex;align-items:center;gap:7px;background:var(--glass-bg);color:#fff;font-size:.78rem;font-weight:600;padding:9px 16px;border-radius:var(--r);cursor:pointer;border:1px solid var(--glass-border);transition:all .2s;white-space:nowrap}
+.wbtn:hover{background:rgba(255,255,255,.13)}
 .wbtn-primary{background:#fff;color:#000;border-color:transparent;font-size:.82rem;font-weight:700}
 .wbtn-primary:hover{background:rgba(255,255,255,.88)}
 .wbtn.in-list{background:rgba(229,9,20,.15);border-color:rgba(229,9,20,.4);color:var(--red)}
@@ -241,121 +214,116 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .more-card:hover .card-info{transform:translateY(0);opacity:1}
 .more-card-bg{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
 
-/* ═══ PROMO ═══ */
+/* PROMO */
 .promo-banner{margin:1.8rem clamp(18px,4vw,48px);padding:clamp(22px,4vw,38px);border-radius:var(--rxl);background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden;flex-wrap:wrap}
 .promo-banner::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.13) 0%,transparent 70%);pointer-events:none}
-.promo-eyebrow{font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.45rem;display:flex;align-items:center;gap:6px}
+.promo-eyebrow{font-size:.65rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.45rem}
 .promo-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.7rem,4vw,2.3rem);letter-spacing:.04em;color:#fff;margin-bottom:.4rem}
 .promo-desc{font-size:.8rem;color:var(--text-dim);max-width:340px;line-height:1.65}
 .promo-btns{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap}
 
-/* ═══ FOOTER ═══ */
+/* FOOTER */
 footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-top:1px solid var(--border)}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--red);letter-spacing:.09em;display:block;margin-bottom:1.3rem}
 .footer-links{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-bottom:1.4rem}
-.footer-links a{font-size:.73rem;color:var(--text-faint);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--text-dim)}
+.footer-links a{font-size:.73rem;color:var(--text-faint);text-decoration:none}
 .footer-copy{font-size:.7rem;color:var(--text-faint)}
 
-/* ═══ MOBILE NAV ═══ */
+/* MOBILE NAV */
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(8,8,13,.93);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:8px 0 max(8px,env(safe-area-inset-bottom));justify-content:space-around;align-items:center}
 @media(max-width:640px){.mobile-nav{display:flex}body{padding-bottom:70px}}
 .mob-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--text-faint);transition:color .2s;font-size:.58rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:0 14px;background:none;border:none}
 .mob-nav-item.active,.mob-nav-item:hover{color:#fff}
 .mob-nav-item.active svg{color:var(--red)}
 
-/* ═══ VIDEO PLAYER ═══ */
+/* VIDEO PLAYER */
 .player-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.95);align-items:center;justify-content:center}
 .player-overlay.open{display:flex}
 .player-container{width:95%;max-width:1100px;aspect-ratio:16/9;position:relative}
 .player-iframe{width:100%;height:100%;border:none;border-radius:12px}
-.player-close{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+.player-close{position:absolute;top:-44px;right:0;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.8rem;font-weight:600}
 .player-close:hover{background:rgba(255,255,255,.2)}
 
-/* ═══ TOAST ═══ */
+/* TOAST */
 .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--surface3);color:#fff;font-size:.78rem;font-weight:600;padding:10px 22px;border-radius:var(--rl);border:1px solid var(--border2);opacity:0;transition:opacity .3s,transform .3s;z-index:999;pointer-events:none;white-space:nowrap;backdrop-filter:blur(12px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ═══ LOADING ═══ */
+/* LOADING */
 .row-loading{display:flex;align-items:center;justify-content:center;padding:40px 0;gap:10px;color:var(--text-faint);font-size:.8rem}
 .spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,.12);border-top-color:var(--red);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ═══ GRADIENTS ═══ */
-.g1{background:linear-gradient(160deg,#0f0c29,#302b63,#24243e)}.g2{background:linear-gradient(160deg,#093028,#237a57)}.g3{background:linear-gradient(160deg,#3d1a1a,#7b2b2b)}.g4{background:linear-gradient(160deg,#1a1a2e,#16213e,#0f3460)}.g5{background:linear-gradient(160deg,#0d2137,#1e5799)}.g6{background:linear-gradient(160deg,#2a1535,#6b2fa0)}.g7{background:linear-gradient(160deg,#1a2f0c,#3d6b22)}.g8{background:linear-gradient(160deg,#2d1b0e,#8b4513)}
+/* GRADIENT FALLBACKS */
+.g1{background:linear-gradient(160deg,#0f0c29,#302b63)}.g2{background:linear-gradient(160deg,#093028,#237a57)}.g3{background:linear-gradient(160deg,#3d1a1a,#7b2b2b)}.g4{background:linear-gradient(160deg,#1a1a2e,#0f3460)}.g5{background:linear-gradient(160deg,#0d2137,#1e5799)}.g6{background:linear-gradient(160deg,#2a1535,#6b2fa0)}.g7{background:linear-gradient(160deg,#1a2f0c,#3d6b22)}.g8{background:linear-gradient(160deg,#2d1b0e,#8b4513)}
 </style>
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
 <nav id="navbar">
   <a class="nav-logo" onclick="showHome()">NEXFLEX</a>
   <ul class="nav-links">
-    <li><a class="active" onclick="showHome();setNavActive(0)" id="nav-home">Home</a></li>
-    <li><a onclick="loadGenreTab('movie');setNavActive(1)">Movies</a></li>
-    <li><a onclick="loadGenreTab('tv');setNavActive(1)">Series</a></li>
+    <li><a class="active" onclick="showHome();setNavActive(0)">Home</a></li>
+    <li><a onclick="setNavActive(1);filterPillByGenre('Action')">Movies</a></li>
+    <li><a onclick="setNavActive(1);filterPillByType('TV_SERIES')">Series</a></li>
     <li><a onclick="showPage('mylist-screen');setNavActive(2)">My List</a></li>
   </ul>
   <div class="nav-right">
-    <button class="nav-icon-btn" aria-label="Search" onclick="openSearch()">
+    <button class="nav-icon-btn" onclick="openSearch()" aria-label="Search">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     </button>
     <div style="position:relative">
-      <button class="nav-icon-btn" aria-label="My List" onclick="showPage('mylist-screen');setNavActive(2)">
+      <button class="nav-icon-btn" onclick="showPage('mylist-screen')" aria-label="My List">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
-      <span class="wl-badge" id="wlBadge">0</span>
+      <span class="wl-badge" id="wlBadge"></span>
     </div>
   </div>
 </nav>
 
-<!-- ══════════ SEARCH OVERLAY ══════════ -->
+<!-- SEARCH OVERLAY -->
 <div id="search-overlay">
   <div class="search-top">
     <div class="search-input-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="search-input" type="text" placeholder="Search movies, shows, people…" autocomplete="off" autocorrect="off" spellcheck="false">
+      <input id="search-input" type="text" placeholder="Search movies, shows…" autocomplete="off" autocorrect="off" spellcheck="false">
     </div>
     <button class="search-cancel" onclick="closeSearch()">Cancel</button>
   </div>
   <div class="search-body">
     <div id="search-hint-wrap">
-      <div class="recent-searches">
-        <label class="recent-label">Recent Searches</label>
-        <div class="recent-items" id="recent-items"></div>
-      </div>
+      <label class="recent-label">Recent Searches</label>
+      <div class="recent-items" id="recent-items"></div>
     </div>
     <div id="search-results-wrap" style="display:none">
-      <div id="search-results-label" style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:16px"></div>
+      <div id="search-results-label"></div>
       <div id="search-results-grid"></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ HOME PAGE ══════════ -->
+<!-- HOME PAGE -->
 <div id="home-screen" class="page active">
-
   <section class="hero">
     <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&q=85')"></div>
     <div class="hero-grad"></div>
     <div class="hero-content">
-      <h1 class="hero-title" id="hero-title">The <em>Godfather</em></h1>
+      <h1 class="hero-title">The <em>Godfather</em></h1>
       <div class="hero-meta">
-        <span class="hero-rating" id="hero-rating">★ 9.2</span><span class="dot"></span>
-        <span class="hero-chip" id="hero-year">1972</span><span class="dot"></span>
-        <span class="hero-chip" id="hero-dur">2h 55m</span><span class="dot"></span>
+        <span class="hero-rating">★ 9.2</span><span class="dot"></span>
+        <span class="hero-chip">1972</span><span class="dot"></span>
+        <span class="hero-chip">2h 55m</span><span class="dot"></span>
         <span class="hero-age">R</span>
       </div>
-      <div class="hero-tags" id="hero-tags"><span class="htag">Crime</span><span class="htag">Drama</span></div>
-      <p class="hero-desc" id="hero-desc">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
+      <div class="hero-tags"><span class="htag">Crime</span><span class="htag">Drama</span></div>
+      <p class="hero-desc">The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</p>
       <div class="hero-actions">
-        <button class="btn-play" id="hero-play-btn" onclick="openPlayerById('tt0068646','movie')">
+        <button class="btn-play" onclick="openPlayer('tt0068646','movie')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>Watch Now
         </button>
-        <button class="btn-info" onclick="openDetailById('tt0068646')">
+        <button class="btn-info" onclick="openDetail('tt0068646')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>More Info
         </button>
-        <button class="btn-circle" id="hero-list-btn" onclick="toggleHeroList()" aria-label="Add to list">
+        <button class="btn-circle" id="hero-list-btn" onclick="toggleHeroList()">
           <svg id="hero-list-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
       </div>
@@ -363,159 +331,116 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
   </section>
 
   <div class="filter-pills">
-    <button class="pill active" onclick="filterPill(this,'')">All</button>
-    <button class="pill" onclick="filterPill(this,'Action')">Action</button>
-    <button class="pill" onclick="filterPill(this,'Drama')">Drama</button>
-    <button class="pill" onclick="filterPill(this,'Comedy')">Comedy</button>
-    <button class="pill" onclick="filterPill(this,'Thriller')">Thriller</button>
-    <button class="pill" onclick="filterPill(this,'Sci-Fi')">Sci-Fi</button>
-    <button class="pill" onclick="filterPill(this,'Horror')">Horror</button>
-    <button class="pill" onclick="filterPill(this,'Animation')">Animation</button>
+    <button class="pill active" onclick="setPill(this,'','')">All</button>
+    <button class="pill" onclick="setPill(this,'Action','')">Action</button>
+    <button class="pill" onclick="setPill(this,'Drama','')">Drama</button>
+    <button class="pill" onclick="setPill(this,'Comedy','')">Comedy</button>
+    <button class="pill" onclick="setPill(this,'Thriller','')">Thriller</button>
+    <button class="pill" onclick="setPill(this,'Sci-Fi','')">Sci-Fi</button>
+    <button class="pill" onclick="setPill(this,'Horror','')">Horror</button>
+    <button class="pill" onclick="setPill(this,'','TV_SERIES')">Series</button>
   </div>
 
-  <!-- CONTINUE WATCHING -->
   <section class="content-section" id="cw-section" style="display:none">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--red)"><path d="M8 5v14l11-7z"/></svg>Continue Watching
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:var(--red)"><path d="M8 5v14l11-7z"/></svg>Continue Watching</h2>
     </div>
     <div class="scroll-wrap"><div class="row-scroll" id="cw-row"></div></div>
   </section>
 
-  <!-- MY LIST PREVIEW -->
   <section class="content-section" id="home-mylist-section" style="display:none">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>My List
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>My List</h2>
       <button class="see-all" onclick="showPage('mylist-screen')">See all <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="scroll-wrap"><div class="row-scroll" id="home-mylist-row"></div></div>
   </section>
 
-  <!-- TOP RATED -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Top 10 All Time
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Top 10 All Time</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="top10-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="top10-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- POPULAR -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--red)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Popular Movies
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:var(--red)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Popular Right Now</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="popular-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="popular-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- ACTION -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#f97316"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action & Adventure
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#f97316"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action & Adventure</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="action-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="action-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- DRAMA -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#8b5cf6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#8b5cf6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="drama-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="drama-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- COMEDY -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#ec4899"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#ec4899"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="comedy-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="comedy-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- SCI-FI -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#38bdf8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Science Fiction
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#38bdf8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Science Fiction</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="scifi-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="scifi-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- THRILLER -->
   <section class="content-section">
     <div class="section-header">
-      <h2 class="section-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#a3e635"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Thriller
-      </h2>
+      <h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color:#a78bfa"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>Top TV Series</h2>
     </div>
-    <div class="scroll-wrap">
-      <div class="row-scroll" id="thriller-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div>
-    </div>
+    <div class="scroll-wrap"><div class="row-scroll" id="tvseries-row"><div class="row-loading"><div class="spinner"></div>Loading…</div></div></div>
   </section>
 
-  <!-- CATEGORIES -->
   <section class="content-section" style="margin-top:2rem">
-    <div class="section-header"><h2 class="section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Browse Categories</h2></div>
+    <div class="section-header"><h2 class="section-title">Browse Categories</h2></div>
     <div class="scroll-wrap">
       <div class="row-scroll">
-        <div class="cat-card g3" onclick="filterPill(document.querySelector('.pill'),'Action')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action</div>
-        <div class="cat-card g4" onclick="filterPill(document.querySelector('.pill'),'Horror')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Horror</div>
-        <div class="cat-card g2" onclick="filterPill(document.querySelector('.pill'),'Comedy')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>Comedy</div>
-        <div class="cat-card g5" onclick="filterPill(document.querySelector('.pill'),'Sci-Fi')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sci-Fi</div>
-        <div class="cat-card g1" onclick="filterPill(document.querySelector('.pill'),'Thriller')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Thriller</div>
-        <div class="cat-card g6" onclick="filterPill(document.querySelector('.pill'),'Drama')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama</div>
-        <div class="cat-card g7" onclick="filterPill(document.querySelector('.pill'),'Animation')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>Animation</div>
-        <div class="cat-card g8" onclick="filterPill(document.querySelector('.pill'),'')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>All</div>
+        <div class="cat-card g3" onclick="setPill(document.querySelectorAll('.pill')[1],'Action','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>Action</div>
+        <div class="cat-card g4" onclick="setPill(document.querySelectorAll('.pill')[6],'Horror','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Horror</div>
+        <div class="cat-card g2" onclick="setPill(document.querySelectorAll('.pill')[3],'Comedy','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>Comedy</div>
+        <div class="cat-card g5" onclick="setPill(document.querySelectorAll('.pill')[5],'Sci-Fi','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Sci-Fi</div>
+        <div class="cat-card g1" onclick="setPill(document.querySelectorAll('.pill')[4],'Thriller','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Thriller</div>
+        <div class="cat-card g6" onclick="setPill(document.querySelectorAll('.pill')[2],'Drama','')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Drama</div>
+        <div class="cat-card g7" onclick="setPill(document.querySelectorAll('.pill')[7],'','TV_SERIES')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>Series</div>
       </div>
     </div>
   </section>
 
   <div class="promo-banner">
     <div>
-      <div class="promo-eyebrow"><svg width="11" height="11" viewBox="0 0 24 24" fill="var(--red)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Now Streaming</div>
+      <div class="promo-eyebrow">✦ IMDb Top Picks</div>
       <div class="promo-title">Classic Cinema Collection</div>
-      <p class="promo-desc">The greatest films ever made, curated for your watchlist. All top-rated titles available now.</p>
+      <p class="promo-desc">The greatest films of all time, rated by millions worldwide. All top-rated titles available now.</p>
     </div>
     <div class="promo-btns">
-      <button class="btn-play" style="padding:11px 20px;font-size:.8rem" onclick="showToast('Starting shuffle...')">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>Shuffle Play
+      <button class="btn-play" style="padding:11px 20px;font-size:.8rem" onclick="openDetail('tt0111161')">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>Watch #1 Film
       </button>
     </div>
   </div>
 
   <footer>
     <span class="footer-logo">NEXFLEX</span>
-    <div class="footer-links"><a href="#">Help Center</a><a href="#">Terms of Use</a><a href="#">Privacy</a><a href="#">Cookie Preferences</a></div>
-    <p class="footer-copy">© 2025 Nexflex, Inc. Powered by IMDb API. All rights reserved.</p>
+    <div class="footer-links"><a href="#">Help</a><a href="#">Terms</a><a href="#">Privacy</a></div>
+    <p class="footer-copy">© 2025 Nexflex. Data from IMDb via imdbapi.dev.</p>
   </footer>
 </div>
 
-<!-- ══════════ MY LIST SCREEN ══════════ -->
+<!-- MY LIST SCREEN -->
 <div id="mylist-screen" class="page">
   <div style="height:62px"></div>
   <div class="mylist-header">
@@ -531,7 +456,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
   <div id="mylist-grid" class="mylist-grid" style="display:none"></div>
 </div>
 
-<!-- ══════════ WATCH SCREEN ══════════ -->
+<!-- WATCH SCREEN -->
 <div id="watch-screen" class="page">
   <div class="back-bar">
     <button class="back-btn" onclick="goBack()">
@@ -539,7 +464,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     </button>
     <span style="font-size:.76rem;color:var(--text-faint)" id="watch-breadcrumb"></span>
   </div>
-  <div class="watch-hero" id="watch-hero">
+  <div class="watch-hero">
     <img id="watch-hero-img" class="watch-hero-img" src="" alt="">
     <div class="watch-hero-grad"></div>
     <div class="watch-play-overlay">
@@ -556,7 +481,7 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
         <button class="wbtn wbtn-primary" onclick="playCurrentItem()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>Play
         </button>
-        <button class="btn-circle" id="watch-list-btn" onclick="toggleWatchList()" aria-label="My List">
+        <button class="btn-circle" id="watch-list-btn" onclick="toggleWatchList()">
           <svg id="watch-list-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
       </div>
@@ -581,20 +506,13 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     <div class="detail-block">
       <div class="detail-label">About</div>
       <p class="watch-desc collapsed" id="watch-desc"></p>
-      <button class="read-more" id="watch-readmore" onclick="toggleWatchRead()">Read more</button>
+      <button class="read-more" id="watch-readmore" onclick="toggleRead()">Read more</button>
     </div>
     <div class="detail-block">
       <div class="detail-label">Details</div>
-      <div class="info-grid">
-        <div><div class="info-item-label">Director</div><div class="info-item-value" id="watch-director">—</div></div>
-        <div><div class="info-item-label">IMDb ID</div><div class="info-item-value" id="watch-imdb">—</div></div>
-        <div><div class="info-item-label">Released</div><div class="info-item-value" id="watch-released">—</div></div>
-        <div><div class="info-item-label">Type</div><div class="info-item-value" id="watch-type">—</div></div>
-        <div><div class="info-item-label">Votes</div><div class="info-item-value" id="watch-votes">—</div></div>
-        <div><div class="info-item-label">Popularity</div><div class="info-item-value" id="watch-pop">—</div></div>
-      </div>
+      <div class="info-grid" id="watch-info-grid"></div>
     </div>
-    <div class="detail-block" id="watch-cast-block">
+    <div class="detail-block" id="watch-cast-block" style="display:none">
       <div class="detail-label">Cast</div>
       <div class="cast-scroll" id="watch-cast"></div>
     </div>
@@ -603,13 +521,9 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
     <div class="detail-label" style="margin-bottom:1rem">More Like This</div>
     <div class="more-grid" id="watch-more-grid"></div>
   </div>
-  <footer>
-    <span class="footer-logo">NEXFLEX</span>
-    <p class="footer-copy">© 2025 Nexflex, Inc. Powered by IMDb API. All rights reserved.</p>
-  </footer>
+  <footer><span class="footer-logo">NEXFLEX</span><p class="footer-copy">© 2025 Nexflex. Data from IMDb via imdbapi.dev.</p></footer>
 </div>
 
-<!-- ══════════ MOBILE NAV ══════════ -->
 <nav class="mobile-nav">
   <button class="mob-nav-item active" onclick="showHome()">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home
@@ -622,7 +536,6 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
   </button>
 </nav>
 
-<!-- ══════════ VIDEO PLAYER ══════════ -->
 <div class="player-overlay" id="playerOverlay" onclick="closePlayer()">
   <div class="player-container" onclick="event.stopPropagation()">
     <button class="player-close" onclick="closePlayer()">✕ Close</button>
@@ -633,253 +546,189 @@ footer{margin-top:3rem;padding:clamp(22px,4vw,44px) clamp(18px,4vw,48px);border-
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════
-// IMDB API BACKEND (from Prism)
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
+// IMDBAPI.DEV — correct param names
+// from swagger: sortBy, sortOrder, minVoteCount, minAggregateRating, genres[], types[]
+// ═══════════════════════════════════
 const API = 'https://api.imdbapi.dev';
 
-async function fetchTitles(params = {}) {
-  const url = new URL(`${API}/titles`);
-  Object.entries(params).forEach(([k,v]) => {
+async function apiFetch(path, params = {}) {
+  const url = new URL(API + path);
+  for (const [k, v] of Object.entries(params)) {
     if (Array.isArray(v)) v.forEach(val => url.searchParams.append(k, val));
-    else if (v !== undefined && v !== '') url.searchParams.set(k, v);
-  });
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('API error');
+    else if (v !== null && v !== undefined && v !== '') url.searchParams.set(k, String(v));
+  }
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
-async function fetchDetail(id) {
-  const res = await fetch(`${API}/titles/${id}`);
-  if (!res.ok) throw new Error('Not found');
-  return res.json();
+// Field helpers — imdbapi.dev response shape
+const poster  = t => t?.primaryImage?.url || null;
+const year    = t => t?.releaseYear?.year || t?.startYear || '';
+const rating  = t => t?.rating?.aggregateRating ?? null;
+const votes   = t => t?.rating?.voteCount ?? null;
+const runtime = t => {
+  const s = t?.runtime?.seconds;
+  if (!s) return '—';
+  const m = Math.round(s / 60);
+  return m >= 60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m}m`;
+};
+const genres  = t => (t?.genres?.genres || []).map(g => g.text);
+const title   = t => t?.primaryTitle || t?.titleText?.text || t?.title || 'Unknown';
+const plot    = t => t?.plot?.plotText?.plainText || '';
+const isTv    = t => { const tp = t?.titleType?.id || ''; return tp.startsWith('tv'); };
+
+function gc(id) {
+  let n = 0; for (const c of (id||'')) n += c.charCodeAt(0);
+  return ['g1','g2','g3','g4','g5','g6','g7','g8'][n % 8];
 }
 
-async function searchTitles(query) {
-  const url = new URL(`${API}/titles/search`);
-  url.searchParams.set('query', query);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error('Search failed');
-  return res.json();
-}
-
-// Helpers
-function getPoster(t) { return t?.primaryImage?.url || t?.image?.url || null; }
-function getYear(t) { return t?.releaseYear?.year || t?.releaseDate?.year || t?.startYear || ''; }
-function getRating(t) { return t?.rating?.aggregateRating || t?.aggregateRating || null; }
-function getVotes(t) { return t?.rating?.voteCount || t?.voteCount || null; }
-function getType(t) {
-  const type = t?.titleType?.id || t?.type || '';
-  return type === 'tvSeries' || type === 'tvMiniSeries' ? 'tv' : 'movie';
-}
-function getRuntime(t) {
-  const mins = t?.runtime?.seconds ? Math.round(t.runtime.seconds / 60) : null;
-  if (!mins) return '—';
-  return mins >= 60 ? `${Math.floor(mins/60)}h ${mins%60}m` : `${mins}m`;
-}
-function getGenres(t) { return (t?.genres?.genres || []).map(g => g.text); }
-function getTitle(t) { return t?.primaryTitle || t?.title || 'Unknown'; }
-function getPlot(t) { return t?.plot?.plotText?.plainText || t?.description || ''; }
-
-function gradClass(id) {
-  const gs = ['g1','g2','g3','g4','g5','g6','g7','g8'];
-  let n = 0; for (let c of (id||'')) n += c.charCodeAt(0);
-  return gs[n % gs.length];
-}
-
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // LOCAL STORAGE
-// ══════════════════════════════════════════
-function getMyList() { try { return JSON.parse(localStorage.getItem('nf_mylist') || '[]'); } catch(e) { return []; } }
-function saveMyList(arr) { localStorage.setItem('nf_mylist', JSON.stringify(arr)); }
-function isInList(id) { return getMyList().some(x => x.id == id); }
-function addToList(item) {
-  const list = getMyList();
-  if (!list.some(x => x.id == item.id)) { list.unshift(item); saveMyList(list); }
-  updateWLBadge();
-}
-function removeFromList(id) {
-  saveMyList(getMyList().filter(x => x.id != id));
-  updateWLBadge();
-}
+// ═══════════════════════════════════
+const getList = () => { try { return JSON.parse(localStorage.getItem('nf_ml')||'[]'); } catch { return []; } };
+const saveList = a => { localStorage.setItem('nf_ml', JSON.stringify(a)); updateWLBadge(); };
+const inList = id => getList().some(x => x.id === id);
+const addList = t => { const l = getList(); if (!l.some(x=>x.id===t.id)) { l.unshift(t); saveList(l); } };
+const remList = id => saveList(getList().filter(x => x.id !== id));
+
+const getCW = () => { try { return JSON.parse(localStorage.getItem('nf_cw')||'[]'); } catch { return []; } };
+const saveCW = a => localStorage.setItem('nf_cw', JSON.stringify(a.slice(0,12)));
+const addCW = t => { const c = getCW().filter(x=>x.id!==t.id); c.unshift({...t, progress: t.progress||5}); saveCW(c); };
+
+const getRecent = () => { try { return JSON.parse(localStorage.getItem('nf_rs')||'[]'); } catch { return []; } };
+const addRecent = q => { const r = getRecent().filter(x=>x!==q); r.unshift(q); localStorage.setItem('nf_rs',JSON.stringify(r.slice(0,5))); };
+
 function updateWLBadge() {
-  const cnt = getMyList().length;
-  const badge = document.getElementById('wlBadge');
-  badge.textContent = cnt;
-  badge.classList.toggle('visible', cnt > 0);
+  const n = getList().length, b = document.getElementById('wlBadge');
+  b.textContent = n || '';
+  b.classList.toggle('visible', n > 0);
 }
+updateWLBadge();
 
-function getCW() { try { return JSON.parse(localStorage.getItem('nf_cw') || '[]'); } catch(e) { return []; } }
-function saveCW(arr) { localStorage.setItem('nf_cw', JSON.stringify(arr.slice(0,12))); }
-function addToCW(item) {
-  let cw = getCW().filter(x => x.id != item.id);
-  cw.unshift({ ...item, progress: item.progress || 5 });
-  saveCW(cw);
-}
-
-function getRecentSearches() { try { return JSON.parse(localStorage.getItem('nf_recent') || '[]'); } catch(e) { return []; } }
-function saveRecentSearch(q) {
-  let r = getRecentSearches().filter(x => x !== q);
-  r.unshift(q);
-  localStorage.setItem('nf_recent', JSON.stringify(r.slice(0,5)));
-  renderRecentSearches();
-}
-function renderRecentSearches() {
-  const recent = getRecentSearches();
-  const container = document.getElementById('recent-items');
-  container.innerHTML = recent.map(q => `
-    <div class="recent-item" onclick="document.getElementById('search-input').value='${q.replace(/'/g,"\\'")}';runSearch('${q.replace(/'/g,"\\'")}')" >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${q}
-    </div>`).join('');
-}
-
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // NAV
-// ══════════════════════════════════════════
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => navbar.classList.toggle('glass', window.scrollY > 10));
-
-function setNavActive(idx) {
-  document.querySelectorAll('.nav-links a').forEach((l,i) => l.classList.toggle('active', i === idx));
-}
-function setMobNavActive(idx) {
-  document.querySelectorAll('.mob-nav-item').forEach((b,i) => b.classList.toggle('active', i === idx));
-}
+// ═══════════════════════════════════
+window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('glass', scrollY > 10));
 
 let prevPage = 'home-screen';
 function showPage(id) {
   prevPage = document.querySelector('.page.active')?.id || 'home-screen';
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-  if (id === 'mylist-screen') renderMyListScreen();
-  if (id === 'home-screen') { refreshCWSection(); refreshHomeMyList(); }
+  scrollTo(0,0);
+  if (id === 'mylist-screen') renderMyList();
+  if (id === 'home-screen') { refreshCW(); refreshHomeList(); }
 }
-function showHome() {
-  setNavActive(0); setMobNavActive(0);
-  showPage('home-screen');
-}
-function goBack() {
-  showPage(prevPage === 'watch-screen' ? 'home-screen' : (prevPage || 'home-screen'));
-  setNavActive(0); setMobNavActive(0);
-}
-function loadGenreTab(type) {
-  showToast('Filtering by ' + (type === 'tv' ? 'Series' : 'Movies') + '…');
-  showPage('home-screen');
-}
+function showHome() { setNavActive(0); setMobActive(0); showPage('home-screen'); }
+function goBack() { showPage(prevPage === 'watch-screen' ? 'home-screen' : (prevPage||'home-screen')); }
+function setNavActive(i) { document.querySelectorAll('.nav-links a').forEach((a,j)=>a.classList.toggle('active',i===j)); }
+function setMobActive(i) { document.querySelectorAll('.mob-nav-item').forEach((b,j)=>b.classList.toggle('active',i===j)); }
 
-// ══════════════════════════════════════════
-// FILTER PILLS — reload popular row
-// ══════════════════════════════════════════
-let activeGenreFilter = '';
-function filterPill(el, genre) {
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-  if (el && el.classList) el.classList.add('active');
-  activeGenreFilter = genre;
-  const params = { sortBy: 'SORT_BY_USER_RATING_COUNT', sortOrder: 'DESC', minVoteCount: 100000, limit: 20 };
+// ═══════════════════════════════════
+// FILTER PILLS
+// ═══════════════════════════════════
+function setPill(el, genre, type) {
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const params = { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:50000, limit:20 };
   if (genre) params.genres = [genre];
-  loadRow('popular-row', params, m => buildCard(m));
+  if (type)  params.types  = [type];
+  loadRow('popular-row', params);
 }
+function filterPillByGenre(g) { setPill(null, g, ''); }
+function filterPillByType(t) { setPill(null, '', t); }
 
-// ══════════════════════════════════════════
-// CARD BUILDERS
-// ══════════════════════════════════════════
-function buildCard(t, badge) {
-  const title = getTitle(t);
-  const poster = getPoster(t);
-  const rating = getRating(t);
-  const year = getYear(t);
-  const gc = gradClass(t.id);
-  const inList = isInList(t.id);
-  return `<div class="movie-card" onclick="openDetailById('${t.id}')">
-    <div class="card-img-wrap ${!poster ? gc : ''}">
-      ${poster ? '<div class="skeleton"></div>' : `<div class="card-fb">${title.charAt(0)}</div>`}
-      ${poster ? `<img alt="${title}" src="${poster}" loading="lazy" onload="this.classList.add('loaded')">` : ''}
+// ═══════════════════════════════════
+// CARD HTML
+// ═══════════════════════════════════
+function cardHTML(t, badge) {
+  const p = poster(t), tit = title(t), r = rating(t), y = year(t), g = gc(t.id);
+  const il = inList(t.id);
+  return `<div class="movie-card" onclick="openDetail('${t.id}')">
+    <div class="card-img-wrap ${p?'':g}">
+      ${p?'<div class="skeleton"></div>':''}
+      ${p?`<img alt="${tit}" src="${p}" loading="lazy" onload="this.classList.add('loaded')">`:`<div class="card-fb">${tit[0]}</div>`}
     </div>
-    ${badge ? `<div class="card-badge badge-${badge.cls}">${badge.text}</div>` : ''}
-    ${inList ? `<div class="card-list-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>` : ''}
-    <div class="card-overlay">
-      <div class="card-info">
-        <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
-        <div class="card-title-sm">${title}</div>
-        <div class="card-meta-sm">
-          ${rating ? `<span class="card-star">★ ${rating.toFixed ? rating.toFixed(1) : rating}</span>` : ''}
-          ${year ? `<span>${year}</span>` : ''}
-        </div>
-      </div>
-    </div>
+    ${badge?`<div class="card-badge badge-${badge.c}">${badge.l}</div>`:''}
+    ${il?`<div class="card-list-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>`:''}
+    <div class="card-overlay"><div class="card-info">
+      <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+      <div class="card-title-sm">${tit}</div>
+      <div class="card-meta-sm">${r?`<span class="card-star">★ ${Number(r).toFixed(1)}</span>`:''} ${y?`<span>${y}</span>`:''}</div>
+    </div></div>
   </div>`;
 }
 
-function buildTop10Card(t, rank) {
-  const title = getTitle(t);
-  const poster = getPoster(t);
-  const gc = gradClass(t.id);
-  return `<div class="top10-card" onclick="openDetailById('${t.id}')">
+function top10HTML(t, rank) {
+  const p = poster(t), tit = title(t), g = gc(t.id);
+  return `<div class="top10-card" onclick="openDetail('${t.id}')">
     <div class="top10-num">${rank}</div>
-    <div class="card-img-wrap ${!poster ? gc : ''}">
-      ${poster ? '<div class="skeleton"></div>' : `<div class="card-fb">${title.charAt(0)}</div>`}
-      ${poster ? `<img alt="${title}" src="${poster}" loading="lazy" onload="this.classList.add('loaded')">` : ''}
+    <div class="card-img-wrap ${p?'':g}">
+      ${p?'<div class="skeleton"></div>':''}
+      ${p?`<img alt="${tit}" src="${p}" loading="lazy" onload="this.classList.add('loaded')">`:`<div class="card-fb">${tit[0]}</div>`}
     </div>
     <div class="top10-ring"></div>
   </div>`;
 }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // ROW LOADER
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 async function loadRow(rowId, params, builder) {
   const row = document.getElementById(rowId);
   if (!row) return;
+  row.innerHTML = '<div class="row-loading"><div class="spinner"></div>Loading…</div>';
   try {
-    const data = await fetchTitles(params);
-    const items = (data.titles || []).filter(t => getPoster(t));
+    const data = await apiFetch('/titles', params);
+    const items = (data.titles || []).filter(t => poster(t));
     if (!items.length) { row.innerHTML = '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">No results found.</div>'; return; }
-    row.innerHTML = items.map(t => builder(t)).join('');
+    row.innerHTML = items.map(t => builder ? builder(t) : cardHTML(t)).join('');
   } catch(e) {
-    row.innerHTML = '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Failed to load. Check connection.</div>';
+    console.error(rowId, e);
+    row.innerHTML = '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Couldn\'t load. Check your internet connection.</div>';
   }
 }
 
 async function initRows() {
-  // Top 10 all time
-  try {
-    const data = await fetchTitles({ sortBy: 'SORT_BY_USER_RATING', sortOrder: 'DESC', minVoteCount: 500000, minAggregateRating: 8.0, limit: 10 });
-    const items = (data.titles || []).filter(t => getPoster(t)).slice(0,10);
+  // Top 10 — highest rated with many votes
+  (async () => {
     const row = document.getElementById('top10-row');
-    row.innerHTML = items.length ? items.map((t,i) => buildTop10Card(t, i+1)).join('') : '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Failed to load.</div>';
-  } catch(e) { document.getElementById('top10-row').innerHTML = '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Failed to load.</div>'; }
+    row.innerHTML = '<div class="row-loading"><div class="spinner"></div>Loading…</div>';
+    try {
+      const data = await apiFetch('/titles', { sortBy:'SORT_BY_USER_RATING', sortOrder:'DESC', minVoteCount:500000, minAggregateRating:8.0, limit:10 });
+      const items = (data.titles||[]).filter(t=>poster(t)).slice(0,10);
+      row.innerHTML = items.length ? items.map((t,i)=>top10HTML(t,i+1)).join('') : '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Couldn\'t load.</div>';
+    } catch(e) { row.innerHTML = '<div style="color:var(--text-faint);font-size:.8rem;padding:20px">Couldn\'t load.</div>'; }
+  })();
 
-  // Popular
-  loadRow('popular-row', { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:200000, minAggregateRating:7.0, limit:20 }, t => buildCard(t));
-  // Action
-  loadRow('action-row', { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', genres:['Action'], minVoteCount:50000, limit:20 }, t => buildCard(t, {cls:'trend',text:'Action'}));
-  // Drama
-  loadRow('drama-row', { sortBy:'SORT_BY_USER_RATING', sortOrder:'DESC', genres:['Drama'], minVoteCount:100000, limit:20 }, t => buildCard(t));
-  // Comedy
-  loadRow('comedy-row', { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', genres:['Comedy'], minVoteCount:50000, limit:20 }, t => buildCard(t));
-  // Sci-Fi
-  loadRow('scifi-row', { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', genres:['Sci-Fi'], minVoteCount:50000, limit:20 }, t => buildCard(t));
-  // Thriller
-  loadRow('thriller-row', { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', genres:['Thriller'], minVoteCount:50000, limit:20 }, t => buildCard(t));
+  // Popular (most voted = most popular)
+  loadRow('popular-row',   { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:200000, limit:20 });
+  loadRow('action-row',   { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:50000, genres:['Action'],  limit:20 }, t => cardHTML(t,{c:'trend',l:'Action'}));
+  loadRow('drama-row',    { sortBy:'SORT_BY_USER_RATING',       sortOrder:'DESC', minVoteCount:100000, genres:['Drama'],  limit:20 });
+  loadRow('comedy-row',   { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:50000, genres:['Comedy'],  limit:20 });
+  loadRow('scifi-row',    { sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:50000, genres:['Sci-Fi'],  limit:20 });
+  loadRow('tvseries-row', { sortBy:'SORT_BY_USER_RATING',       sortOrder:'DESC', minVoteCount:100000, types:['TV_SERIES'], limit:20 }, t => cardHTML(t,{c:'new',l:'Series'}));
 }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // SEARCH
-// ══════════════════════════════════════════
-let searchDebounce = null;
+// ═══════════════════════════════════
+let sDebounce = null;
+
 function openSearch() {
   const o = document.getElementById('search-overlay');
   o.style.display = 'flex';
   setTimeout(() => o.classList.add('open'), 10);
   document.getElementById('search-input').focus();
   document.body.style.overflow = 'hidden';
-  renderRecentSearches();
+  renderRecent();
 }
 function closeSearch() {
   const o = document.getElementById('search-overlay');
   o.classList.remove('open');
-  setTimeout(() => { o.style.display = 'none'; }, 260);
+  setTimeout(() => { o.style.display='none'; }, 260);
   document.body.style.overflow = '';
   document.getElementById('search-input').value = '';
   resetSearch();
@@ -887,346 +736,293 @@ function closeSearch() {
 function resetSearch() {
   document.getElementById('search-hint-wrap').style.display = 'block';
   document.getElementById('search-results-wrap').style.display = 'none';
-  document.getElementById('search-results-grid').innerHTML = '';
 }
+function renderRecent() {
+  const r = getRecent();
+  document.getElementById('recent-items').innerHTML = r.map(q =>
+    `<div class="recent-item" onclick="document.getElementById('search-input').value=\`${q}\`;doSearch(\`${q}\`)">${q}</div>`
+  ).join('');
+}
+
 document.getElementById('search-input').addEventListener('input', function() {
-  clearTimeout(searchDebounce);
+  clearTimeout(sDebounce);
   const q = this.value.trim();
   if (!q) { resetSearch(); return; }
-  searchDebounce = setTimeout(() => runSearch(q), 420);
+  sDebounce = setTimeout(() => doSearch(q), 420);
 });
 document.getElementById('search-input').addEventListener('keydown', e => {
   if (e.key === 'Escape') closeSearch();
-  if (e.key === 'Enter') { clearTimeout(searchDebounce); runSearch(e.target.value.trim()); }
+  if (e.key === 'Enter') { clearTimeout(sDebounce); doSearch(e.target.value.trim()); }
 });
 
-async function runSearch(q) {
+async function doSearch(q) {
   if (!q) return;
-  saveRecentSearch(q);
+  addRecent(q);
   document.getElementById('search-hint-wrap').style.display = 'none';
   document.getElementById('search-results-wrap').style.display = 'block';
   document.getElementById('search-results-label').textContent = '';
   document.getElementById('search-results-grid').innerHTML = '<div class="row-loading" style="padding:30px 0"><div class="spinner"></div>Searching…</div>';
   try {
-    const data = await searchTitles(q);
-    const results = (data.titles || []).filter(t => getPoster(t)).slice(0, 30);
-    document.getElementById('search-results-label').textContent = results.length > 0 ? `${results.length} results for "${q}"` : '';
+    // imdbapi.dev search endpoint: /titles/search?query=...
+    const data = await apiFetch('/titles/search', { query: q });
+    const results = (data.titles || []).filter(t => poster(t)).slice(0,30);
+    document.getElementById('search-results-label').textContent = results.length ? `${results.length} results for "${q}"` : '';
     if (!results.length) {
-      document.getElementById('search-results-grid').innerHTML = '<div style="color:var(--text-faint);font-size:.85rem;padding:30px 0">No results found. Try a different title.</div>';
+      document.getElementById('search-results-grid').innerHTML = '<div style="color:var(--text-faint);font-size:.85rem;padding:30px 0">No results. Try a different title.</div>';
       return;
     }
     document.getElementById('search-results-grid').innerHTML = results.map(t => {
-      const title = getTitle(t);
-      const poster = getPoster(t);
-      const year = getYear(t);
-      const rating = getRating(t);
-      const gc = gradClass(t.id);
-      return `<div class="search-card" onclick="closeSearch();openDetailById('${t.id}')">
-        ${poster ? `<img class="search-card-img" src="${poster}" alt="${title}" loading="lazy" onload="this.style.opacity=1" style="opacity:0;transition:opacity .4s">` : `<div class="search-card-fb ${gc}">${title.charAt(0)}</div>`}
-        <div class="card-overlay">
-          <div class="card-info">
-            <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
-            <div class="card-title-sm">${title}</div>
-            <div class="card-meta-sm">
-              ${rating ? `<span class="card-star">★ ${parseFloat(rating).toFixed(1)}</span>` : ''}
-              ${year ? `<span>${year}</span>` : ''}
-            </div>
-          </div>
-        </div>
+      const p = poster(t), tit = title(t), r = rating(t), y = year(t), g = gc(t.id);
+      return `<div class="search-card" onclick="closeSearch();openDetail('${t.id}')">
+        ${p?`<img class="search-card-img" src="${p}" alt="${tit}" loading="lazy" onload="this.style.opacity=1" style="opacity:0;transition:opacity .4s">`:`<div class="search-card-fb ${g}">${tit[0]}</div>`}
+        <div class="card-overlay"><div class="card-info">
+          <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+          <div class="card-title-sm">${tit}</div>
+          <div class="card-meta-sm">${r?`<span class="card-star">★ ${Number(r).toFixed(1)}</span>`:''} ${y?`<span>${y}</span>`:''}</div>
+        </div></div>
       </div>`;
     }).join('');
-  } catch(err) {
-    document.getElementById('search-results-grid').innerHTML = '<div style="color:var(--text-faint);font-size:.85rem;padding:30px 0">Search unavailable. Check your connection.</div>';
+  } catch(e) {
+    document.getElementById('search-results-grid').innerHTML = '<div style="color:var(--text-faint);font-size:.85rem;padding:30px 0">Search failed. Check your connection.</div>';
   }
 }
 
-// ══════════════════════════════════════════
-// WATCH / DETAIL SCREEN
-// ══════════════════════════════════════════
-let currentWatchItem = null;
+// ═══════════════════════════════════
+// DETAIL / WATCH SCREEN
+// ═══════════════════════════════════
+let currentItem = null;
 
-async function openDetailById(id) {
+async function openDetail(id) {
   showPage('watch-screen');
   document.getElementById('watch-hero-img').src = '';
-  document.getElementById('watch-hero-title').textContent = '';
+  document.getElementById('watch-hero-title').textContent = 'Loading…';
   document.getElementById('watch-desc').textContent = '';
   document.getElementById('watch-more-grid').innerHTML = '<div class="row-loading"><div class="spinner"></div></div>';
 
   try {
-    const t = await fetchDetail(id);
-    currentWatchItem = t;
+    const t = await apiFetch(`/titles/${id}`);
+    currentItem = t;
 
-    const title = getTitle(t);
-    const poster = getPoster(t);
-    const rating = getRating(t);
-    const year = getYear(t);
-    const runtime = getRuntime(t);
-    const genres = getGenres(t);
-    const plot = getPlot(t);
-    const votes = getVotes(t);
-    const type = getType(t);
+    const tit = title(t), p = poster(t), r = rating(t), y = year(t), rt = runtime(t), gs = genres(t), pl = plot(t), v = votes(t);
 
-    // Backdrop — use poster as fallback (IMDB API doesn't have separate backdrops)
-    document.getElementById('watch-hero-img').src = poster || '';
-    document.getElementById('watch-breadcrumb').textContent = title;
-    document.getElementById('watch-hero-title').textContent = title;
-    document.getElementById('watch-hero-sub').innerHTML = `
-      ${rating ? `<span>★ ${parseFloat(rating).toFixed(1)}</span><span class="dot"></span>` : ''}
-      ${year ? `<span>${year}</span><span class="dot"></span>` : ''}
-      <span>${runtime}</span>
-    `;
-    document.getElementById('watch-star').textContent = rating ? `★ ${parseFloat(rating).toFixed(1)}` : 'N/A';
-    document.getElementById('watch-year').textContent = year || '—';
-    document.getElementById('watch-dur').textContent = runtime;
-    document.getElementById('watch-genres').innerHTML = genres.slice(0,4).map(g=>`<span class="gpill">${g}</span>`).join('');
-    document.getElementById('watch-desc').textContent = plot || 'No description available.';
-    document.getElementById('watch-director').textContent = (t?.directors || [])[0]?.name || (t?.crew?.find?.(c=>c.job==='Director')?.name) || '—';
-    document.getElementById('watch-imdb').textContent = id;
-    document.getElementById('watch-released').textContent = t?.releaseDate ? `${t.releaseDate.year || ''}` : (year || '—');
-    document.getElementById('watch-type').textContent = type === 'tv' ? 'TV Series' : 'Movie';
-    document.getElementById('watch-votes').textContent = votes ? parseInt(votes).toLocaleString() : '—';
-    document.getElementById('watch-pop').textContent = rating ? `${parseFloat(rating).toFixed(1)} / 10` : '—';
+    document.getElementById('watch-hero-img').src = p || '';
+    document.getElementById('watch-breadcrumb').textContent = tit;
+    document.getElementById('watch-hero-title').textContent = tit;
+    document.getElementById('watch-hero-sub').innerHTML =
+      `${r?`<span>★ ${Number(r).toFixed(1)}</span><span class="dot"></span>`:''}`+
+      `${y?`<span>${y}</span><span class="dot"></span>`:''}`+
+      `<span>${rt}</span>`;
+    document.getElementById('watch-star').textContent = r ? `★ ${Number(r).toFixed(1)}` : 'N/A';
+    document.getElementById('watch-year').textContent = y || '—';
+    document.getElementById('watch-dur').textContent = rt;
+    document.getElementById('watch-genres').innerHTML = gs.slice(0,5).map(g=>`<span class="gpill">${g}</span>`).join('');
+    document.getElementById('watch-desc').textContent = pl || 'No description available.';
+
+    // Info grid
+    document.getElementById('watch-info-grid').innerHTML = [
+      ['IMDb ID', `<a href="https://www.imdb.com/title/${id}" target="_blank" style="color:var(--red)">${id}</a>`],
+      ['Type', isTv(t) ? 'TV Series' : 'Movie'],
+      ['Year', y || '—'],
+      ['Runtime', rt],
+      ['Rating', r ? `${Number(r).toFixed(1)} / 10` : '—'],
+      ['Votes', v ? Number(v).toLocaleString() : '—'],
+    ].map(([l,val])=>`<div><div class="info-item-label">${l}</div><div class="info-item-value">${val}</div></div>`).join('');
 
     // Cast
-    const cast = t?.cast || t?.principals || [];
+    const cast = t?.cast || t?.credits || [];
     const castBlock = document.getElementById('watch-cast-block');
     if (cast.length) {
       castBlock.style.display = '';
-      document.getElementById('watch-cast').innerHTML = cast.slice(0,10).map(c => {
-        const name = c.name || c.nameText?.text || 'Unknown';
+      document.getElementById('watch-cast').innerHTML = cast.slice(0,12).map(c => {
+        const n = c.name || c.nameText?.text || 'Unknown';
         const role = c.characters?.[0]?.name || c.job || '';
-        const initials = name.split(' ').map(w=>w[0]).slice(0,2).join('');
-        return `<div class="cast-card"><div class="cast-avatar"><span>${initials}</span></div><div class="cast-name">${name}</div><div class="cast-role">${role}</div></div>`;
+        const img = c.primaryImage?.url;
+        return `<div class="cast-card">
+          <div class="cast-avatar">${img?`<img src="${img}" alt="${n}" loading="lazy">`:`<span>${n.split(' ').map(w=>w[0]).slice(0,2).join('')}</span>`}</div>
+          <div class="cast-name">${n}</div><div class="cast-role">${role}</div>
+        </div>`;
       }).join('');
     } else { castBlock.style.display = 'none'; }
 
-    // More like this — same genre
-    if (genres.length) {
+    updateWatchListBtns();
+    addCW({...t, progress: 5});
+    refreshCW();
+
+    // More like this
+    if (gs.length) {
       try {
-        const moreData = await fetchTitles({ genres: [genres[0]], sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:50000, limit:12 });
-        const moreTitles = (moreData.titles || []).filter(m => m.id !== id && getPoster(m)).slice(0,8);
-        document.getElementById('watch-more-grid').innerHTML = moreTitles.length
-          ? moreTitles.map(m => {
-              const mt = getTitle(m); const mp = getPoster(m);
-              const mr = getRating(m); const my = getYear(m);
-              const gc = gradClass(m.id);
-              return `<div class="more-card" onclick="openDetailById('${m.id}')">
-                ${mp ? `<img class="more-card-bg" src="${mp}" alt="${mt}" loading="lazy" onload="this.style.opacity=1" style="opacity:0;transition:opacity .4s">` : `<div class="more-card-bg ${gc}"></div>`}
+        const more = await apiFetch('/titles', { genres:[gs[0]], sortBy:'SORT_BY_USER_RATING_COUNT', sortOrder:'DESC', minVoteCount:20000, limit:12 });
+        const mItems = (more.titles||[]).filter(m=>m.id!==id && poster(m)).slice(0,8);
+        document.getElementById('watch-more-grid').innerHTML = mItems.length
+          ? mItems.map(m => {
+              const mp=poster(m),mt=title(m),mr=rating(m),my=year(m),mg=gc(m.id);
+              return `<div class="more-card" onclick="openDetail('${m.id}')">
+                ${mp?`<img class="more-card-bg" src="${mp}" alt="${mt}" loading="lazy" onload="this.style.opacity=1" style="opacity:0;transition:opacity .4s">`:`<div class="more-card-bg ${mg}"></div>`}
                 <div class="card-overlay"><div class="card-info">
                   <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
                   <div class="card-title-sm">${mt}</div>
-                  <div class="card-meta-sm">${mr?`<span class="card-star">★ ${parseFloat(mr).toFixed(1)}</span>`:''} ${my?`<span>${my}</span>`:''}</div>
+                  <div class="card-meta-sm">${mr?`<span class="card-star">★ ${Number(mr).toFixed(1)}</span>`:''} ${my?`<span>${my}</span>`:''}</div>
                 </div></div>
               </div>`;
             }).join('')
           : '<div style="color:var(--text-faint);font-size:.82rem">No similar titles found.</div>';
-      } catch(e) { document.getElementById('watch-more-grid').innerHTML = ''; }
+      } catch { document.getElementById('watch-more-grid').innerHTML = ''; }
     } else { document.getElementById('watch-more-grid').innerHTML = ''; }
 
-    updateWatchListBtn();
-    // Add to continue watching
-    addToCW({ ...t, progress: 5 });
-    refreshCWSection();
-
-  } catch(err) {
-    document.getElementById('watch-desc').textContent = 'Failed to load details. Please check your connection.';
+  } catch(e) {
+    console.error('openDetail', e);
+    document.getElementById('watch-hero-title').textContent = 'Failed to load';
+    document.getElementById('watch-desc').textContent = 'Could not fetch details. Please check your connection and try again.';
     document.getElementById('watch-more-grid').innerHTML = '';
   }
 }
 
-async function openPlayerById(id, type) {
-  const vType = type === 'tv' ? 'tv' : 'movie';
-  const url = `https://vidfast.pro/${vType}/${id}${vType === 'tv' ? '/1/1' : ''}?autoPlay=true&theme=000000`;
+function playCurrentItem() {
+  if (!currentItem) return;
+  openPlayer(currentItem.id, isTv(currentItem) ? 'tv' : 'movie');
+}
+
+function openPlayer(id, type) {
+  const url = `https://vidfast.pro/${type}/${id}${type==='tv'?'/1/1':''}?autoPlay=true&theme=000000`;
   document.getElementById('playerIframe').src = url;
   document.getElementById('playerOverlay').classList.add('open');
 }
-
-function playCurrentItem() {
-  if (!currentWatchItem) return;
-  const id = currentWatchItem.id;
-  const type = getType(currentWatchItem);
-  openPlayerById(id, type);
-}
-
 function closePlayer() {
   document.getElementById('playerIframe').src = '';
   document.getElementById('playerOverlay').classList.remove('open');
 }
 
-function toggleWatchRead() {
-  const d = document.getElementById('watch-desc');
-  const btn = document.getElementById('watch-readmore');
-  if (d.classList.contains('collapsed')) { d.classList.remove('collapsed'); btn.textContent = 'Show less'; }
-  else { d.classList.add('collapsed'); btn.textContent = 'Read more'; }
+function toggleRead() {
+  const d = document.getElementById('watch-desc'), b = document.getElementById('watch-readmore');
+  d.classList.toggle('collapsed');
+  b.textContent = d.classList.contains('collapsed') ? 'Read more' : 'Show less';
 }
 
-function updateWatchListBtn() {
-  if (!currentWatchItem) return;
-  const inList = isInList(currentWatchItem.id);
-  const hbtn = document.getElementById('watch-list-btn');
-  const hicon = document.getElementById('watch-list-icon');
-  if (hbtn) hbtn.classList.toggle('in-list', inList);
-  if (hicon) hicon.innerHTML = inList
-    ? '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>'
-    : '<path d="M12 5v14M5 12h14"/>';
-  const rbtn = document.getElementById('watch-list-btn2');
-  const ricon = document.getElementById('watch-list-icon2');
-  const rlabel = document.getElementById('watch-list-label2');
-  if (rbtn) rbtn.classList.toggle('in-list', inList);
-  if (ricon) ricon.innerHTML = inList
-    ? '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>'
-    : '<path d="M12 5v14M5 12h14"/>';
-  if (rlabel) rlabel.textContent = inList ? 'In My List' : 'My List';
+function updateWatchListBtns() {
+  if (!currentItem) return;
+  const il = inList(currentItem.id);
+  const heartPath = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>';
+  const plusPath = '<path d="M12 5v14M5 12h14"/>';
+  document.getElementById('watch-list-btn').classList.toggle('in-list', il);
+  document.getElementById('watch-list-icon').innerHTML = il ? heartPath : plusPath;
+  document.getElementById('watch-list-btn2').classList.toggle('in-list', il);
+  document.getElementById('watch-list-icon2').innerHTML = il ? heartPath : plusPath;
+  document.getElementById('watch-list-label2').textContent = il ? 'In My List' : 'My List';
 }
 
 function toggleWatchList() {
-  if (!currentWatchItem) return;
-  const id = currentWatchItem.id;
-  if (isInList(id)) { removeFromList(id); showToast('Removed from My List'); }
-  else { addToList({ ...currentWatchItem }); showToast('Added to My List ♥'); }
-  updateWatchListBtn();
-  refreshHomeMyList();
+  if (!currentItem) return;
+  if (inList(currentItem.id)) { remList(currentItem.id); showToast('Removed from My List'); }
+  else { addList({...currentItem}); showToast('Added to My List ♥'); }
+  updateWatchListBtns();
+  refreshHomeList();
 }
 
-// ══════════════════════════════════════════
-// HERO
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
+// HERO LIST BUTTON
+// ═══════════════════════════════════
 const HERO_ID = 'tt0068646';
 function toggleHeroList() {
-  const btn = document.getElementById('hero-list-btn');
-  const icon = document.getElementById('hero-list-icon');
-  const fake = { id: HERO_ID, primaryTitle: 'The Godfather', rating: { aggregateRating: 9.2 }, releaseYear: { year: 1972 } };
-  if (isInList(HERO_ID)) {
-    removeFromList(HERO_ID);
-    btn.classList.remove('in-list');
+  const btn = document.getElementById('hero-list-btn'), icon = document.getElementById('hero-list-icon');
+  const fake = { id:HERO_ID, primaryTitle:'The Godfather' };
+  if (inList(HERO_ID)) {
+    remList(HERO_ID); btn.classList.remove('in-list');
     icon.innerHTML = '<path d="M12 5v14M5 12h14"/>';
     showToast('Removed from My List');
   } else {
-    addToList(fake);
-    btn.classList.add('in-list');
+    addList(fake); btn.classList.add('in-list');
     icon.innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>';
     showToast('Added to My List ♥');
   }
-  refreshHomeMyList();
+  refreshHomeList();
 }
-(function() {
-  if (isInList(HERO_ID)) {
-    const btn = document.getElementById('hero-list-btn');
-    const icon = document.getElementById('hero-list-icon');
-    if (btn) btn.classList.add('in-list');
-    if (icon) icon.innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>';
-  }
-})();
+if (inList(HERO_ID)) {
+  document.getElementById('hero-list-btn')?.classList.add('in-list');
+  if (document.getElementById('hero-list-icon'))
+    document.getElementById('hero-list-icon').innerHTML = '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>';
+}
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // CONTINUE WATCHING
-// ══════════════════════════════════════════
-function refreshCWSection() {
-  const cw = getCW();
-  const section = document.getElementById('cw-section');
-  const row = document.getElementById('cw-row');
-  if (!cw.length) { section.style.display = 'none'; return; }
-  section.style.display = 'block';
+// ═══════════════════════════════════
+function refreshCW() {
+  const cw = getCW(), sec = document.getElementById('cw-section'), row = document.getElementById('cw-row');
+  if (!cw.length) { sec.style.display='none'; return; }
+  sec.style.display = 'block';
   row.innerHTML = cw.map(t => {
-    const title = getTitle(t);
-    const poster = getPoster(t);
-    const pct = Math.round(t.progress || 5);
-    const gc = gradClass(t.id);
-    const rating = getRating(t);
-    return `<div class="wide-card" onclick="openDetailById('${t.id}')">
-      <div class="card-img-wrap ${!poster ? gc : ''}">
-        ${poster ? '<div class="skeleton"></div>' : `<div class="card-fb" style="font-size:2rem">${title.charAt(0)}</div>`}
-        ${poster ? `<img alt="${title}" src="${poster}" loading="lazy" onload="this.classList.add('loaded')">` : ''}
+    const p=poster(t), tit=title(t), pct=Math.round(t.progress||5), r=rating(t), g=gc(t.id);
+    return `<div class="wide-card" onclick="openDetail('${t.id}')">
+      <div class="card-img-wrap ${p?'':g}" style="aspect-ratio:16/9">
+        ${p?'<div class="skeleton"></div>':''}
+        ${p?`<img alt="${tit}" src="${p}" loading="lazy" onload="this.classList.add('loaded')">`:`<div class="card-fb" style="font-size:2rem">${tit[0]}</div>`}
       </div>
       <div class="wide-card-overlay">
-        <div class="wide-card-title">${title}</div>
-        <div class="wide-card-sub">${rating ? `<span class="card-star">★ ${parseFloat(rating).toFixed(1)}</span>` : ''}<span>${pct}% watched</span></div>
+        <div class="wide-card-title">${tit}</div>
+        <div class="wide-card-sub">${r?`<span class="card-star">★ ${Number(r).toFixed(1)}</span>`:''}<span>${pct}% watched</span></div>
         <div class="progress-mini"><div class="progress-mini-fill" style="width:${pct}%"></div></div>
       </div>
-      <button class="wide-card-remove" onclick="event.stopPropagation();removeCW('${t.id}')" title="Remove">
+      <button class="wide-card-remove" onclick="event.stopPropagation();removeCW('${t.id}')">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </div>`;
   }).join('');
 }
-function removeCW(id) {
-  saveCW(getCW().filter(x => x.id != id));
-  refreshCWSection();
-  showToast('Removed from Continue Watching');
-}
+function removeCW(id) { saveCW(getCW().filter(x=>x.id!==id)); refreshCW(); showToast('Removed'); }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // MY LIST
-// ══════════════════════════════════════════
-function refreshHomeMyList() {
-  const list = getMyList();
-  const section = document.getElementById('home-mylist-section');
-  const row = document.getElementById('home-mylist-row');
-  if (!list.length) { section.style.display = 'none'; return; }
-  section.style.display = 'block';
-  row.innerHTML = list.slice(0,12).map(t => buildCard(t)).join('');
+// ═══════════════════════════════════
+function refreshHomeList() {
+  const list = getList(), sec = document.getElementById('home-mylist-section'), row = document.getElementById('home-mylist-row');
+  if (!list.length) { sec.style.display='none'; return; }
+  sec.style.display='block';
+  row.innerHTML = list.slice(0,12).map(t=>cardHTML(t)).join('');
 }
-
-function renderMyListScreen() {
-  const list = getMyList();
-  const empty = document.getElementById('mylist-empty');
-  const grid = document.getElementById('mylist-grid');
-  const countEl = document.getElementById('mylist-count');
-  countEl.textContent = list.length === 1 ? '1 title' : `${list.length} titles`;
-  if (!list.length) { empty.style.display = 'flex'; grid.style.display = 'none'; return; }
-  empty.style.display = 'none';
-  grid.style.display = 'grid';
+function renderMyList() {
+  const list = getList(), empty = document.getElementById('mylist-empty'), grid = document.getElementById('mylist-grid');
+  document.getElementById('mylist-count').textContent = `${list.length} title${list.length===1?'':'s'}`;
+  if (!list.length) { empty.style.display='flex'; grid.style.display='none'; return; }
+  empty.style.display='none'; grid.style.display='grid';
   grid.innerHTML = list.map(t => {
-    const title = getTitle(t);
-    const poster = getPoster(t);
-    const year = getYear(t);
-    const rating = getRating(t);
-    const gc = gradClass(t.id);
-    return `<div class="movie-card" onclick="openDetailById('${t.id}')" style="width:100%">
-      <div class="card-img-wrap ${!poster ? gc : ''}">
-        ${poster ? '<div class="skeleton"></div>' : `<div class="card-fb">${title.charAt(0)}</div>`}
-        ${poster ? `<img alt="${title}" src="${poster}" loading="lazy" onload="this.classList.add('loaded')">` : ''}
+    const p=poster(t),tit=title(t),r=rating(t),y=year(t),g=gc(t.id);
+    return `<div class="movie-card" onclick="openDetail('${t.id}')" style="width:100%">
+      <div class="card-img-wrap ${p?'':g}">
+        ${p?'<div class="skeleton"></div>':''}
+        ${p?`<img alt="${tit}" src="${p}" loading="lazy" onload="this.classList.add('loaded')">`:`<div class="card-fb">${tit[0]}</div>`}
       </div>
-      <div class="card-overlay">
-        <div class="card-info">
-          <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
-          <div class="card-title-sm">${title}</div>
-          <div class="card-meta-sm">${rating?`<span class="card-star">★ ${parseFloat(rating).toFixed(1)}</span>`:''} ${year?`<span>${year}</span>`:''}</div>
-        </div>
-      </div>
-      <button class="wide-card-remove" style="display:flex;top:8px;right:8px" onclick="event.stopPropagation();removeAndRefresh('${t.id}')" title="Remove">
+      <div class="card-overlay"><div class="card-info">
+        <div class="card-play-circle"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg></div>
+        <div class="card-title-sm">${tit}</div>
+        <div class="card-meta-sm">${r?`<span class="card-star">★ ${Number(r).toFixed(1)}</span>`:''} ${y?`<span>${y}</span>`:''}</div>
+      </div></div>
+      <button class="wide-card-remove" style="display:flex;top:8px;right:8px" onclick="event.stopPropagation();remFromMyList('${t.id}')">
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </div>`;
   }).join('');
 }
-function removeAndRefresh(id) {
-  removeFromList(id);
-  renderMyListScreen();
-  refreshHomeMyList();
-  showToast('Removed from My List');
-}
+function remFromMyList(id) { remList(id); renderMyList(); refreshHomeList(); showToast('Removed from My List'); }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // TOAST
-// ══════════════════════════════════════════
-let toastTimer = null;
+// ═══════════════════════════════════
+let toastT = null;
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  if (toastTimer) clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('show'), 2400);
 }
 
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 // INIT
-// ══════════════════════════════════════════
+// ═══════════════════════════════════
 initRows();
-refreshCWSection();
-refreshHomeMyList();
-renderRecentSearches();
-updateWLBadge();
+refreshCW();
+refreshHomeList();
+renderRecent();
 </script>
 </body>
 </html>
+HTMLEOF
+echo "Done - $(wc -l < /mnt/user-data/outputs/nexflex-hybrid.html) lines"
+Output
